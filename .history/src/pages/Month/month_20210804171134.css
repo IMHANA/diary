@@ -1,0 +1,9 @@
+#container {
+    display: flex;
+    flex-direction: column;
+}
+
+li {
+    width: 50px;
+    height: 30px;
+}
