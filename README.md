@@ -1,4 +1,4 @@
-# catchmind
+# 그림일기
 <h3>필요한 언어</h3>
 <li> Vanilla js (es 6)</li>
 <li> (React v17 - redux , class)</li>
