@@ -1,0 +1,11 @@
+input[placeholder] {
+    text-align: center;
+}
+
+#login_btn, #sign_up_btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color:rgb(255, 208, 0);
+    outline: none;
+}

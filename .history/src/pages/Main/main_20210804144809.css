@@ -1,0 +1,23 @@
+#container {
+    display: flex;
+    justify-content: center;
+}
+
+input[placeholder] {
+    text-align: center;
+}
+
+#login_btn, #sign_up_btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color:rgb(255, 208, 0);
+    outline: none;
+    border: none;
+}
+#login_btn:hover {
+    background-color: violet;
+}
+#sign_up_btn:hover {
+    background-color: violet;
+}

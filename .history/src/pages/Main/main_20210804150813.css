@@ -1,0 +1,35 @@
+#container {
+    display: flex;
+    flex-direction:column;
+
+    height: 100vh;
+
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(252, 245, 233);
+}
+
+input[placeholder] {
+    text-align: center;
+}
+
+#login_btn, #sign_up_btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color:rgb(255, 208, 0);
+    outline: none;
+    border: none;
+}
+
+#btn_box {
+    display: flex;
+    justify-content:flex-start;
+}
+
+#login_btn:hover {
+    background-color: violet;
+}
+#sign_up_btn:hover {
+    background-color: violet;
+}
