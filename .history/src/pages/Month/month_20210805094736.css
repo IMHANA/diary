@@ -13,22 +13,18 @@
 }
 .month_box_container .calendar-item {
     /* display: inline-block; */
-    border: 1px solid rgb(243, 243, 243); 
+    border: 1px solid rgb(210, 211, 216); 
     flex:1;
+
     padding-top: 10px;
     padding-left: 15px;
 }
 
 .month_box_container .calendar-item span.title{
-    font-size: 40px;
+    font-size: 30px;
     color:darkgrey;
-    cursor: pointer;
     /* margin-top: 10px;
     margin-bottom: 10px; */
-}
-
-.month_box_container .calendar-item span.title:hover{ 
-    color:rgb(252, 169, 76);
 }
 
 /* .first-floor span.title{
@@ -38,9 +34,5 @@
 
 #year_row {
     margin-top: 50px;
-}
-
-#year_row span {
-    padding: 0 15px 0 15px;
 }
 

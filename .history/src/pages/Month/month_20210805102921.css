@@ -17,12 +17,12 @@
     flex:1;
     padding-top: 10px;
     padding-left: 15px;
+    cursor: pointer;
 }
 
 .month_box_container .calendar-item span.title{
-    font-size: 40px;
+    font-size: 30px;
     color:darkgrey;
-    cursor: pointer;
     /* margin-top: 10px;
     margin-bottom: 10px; */
 }

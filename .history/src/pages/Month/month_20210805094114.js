@@ -8,7 +8,7 @@ export default class month extends Component {
         {/* <p>여기 monthly!!!!!</p> */}
         <div className="month_box_container first-floor">
           <div className="calendar-item">
-            <span className="title"> 01</span>
+            <p className="title"> 01</p>
           </div>
 
           <div className="calendar-item">

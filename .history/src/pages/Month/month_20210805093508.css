@@ -13,34 +13,38 @@
 }
 .month_box_container .calendar-item {
     /* display: inline-block; */
-    border: 1px solid rgb(243, 243, 243); 
+    border: 1px solid rgb(23, 24, 27); 
     flex:1;
-    padding-top: 10px;
-    padding-left: 15px;
+
+    /* padding-top: 10px; */
 }
 
 .month_box_container .calendar-item span.title{
-    font-size: 40px;
-    color:darkgrey;
-    cursor: pointer;
-    /* margin-top: 10px;
-    margin-bottom: 10px; */
+    font-size: x-large;
+    margin-top: 10px;
+
+    margin-bottom: 10px;
 }
 
-.month_box_container .calendar-item span.title:hover{ 
-    color:rgb(252, 169, 76);
-}
-
-/* .first-floor span.title{
+.first-floor span.title{
     color: red;
-    height: 40px;
+}
+
+.first-floor p.title{
+    color: blue;
+}
+
+/* .month_box {
+    display: inline-block;
+    border: 1px solid rgb(23, 24, 27); 
+    width: 330px;
+    height: 150px;
+    font-weight: bolder;
+    font-size:x-large;
+    color:slategrey;
 } */
 
 #year_row {
     margin-top: 50px;
-}
-
-#year_row span {
-    padding: 0 15px 0 15px;
 }
 
