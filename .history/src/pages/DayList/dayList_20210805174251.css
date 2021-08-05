@@ -1,0 +1,39 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.list_title {
+    margin-bottom: 40px;
+}
+
+#month {
+    color:darkorange;
+    font-size: 45px;
+}
+
+#month_sub {
+    margin: 0 15px 0 50px;
+}
+
+#sub_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.list_box {
+    margin-bottom: 30px;
+}
+.icon {
+    padding: 0 30px 0 30px;
+}
+
+.date {
+    font-weight: bolder;
+    color:darkred;
+}

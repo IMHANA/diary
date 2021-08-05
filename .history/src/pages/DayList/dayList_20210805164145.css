@@ -1,0 +1,20 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+#month {
+    color:darkorange;
+    font-size: 45px;
+}
+
+ #sub_box {
+    width: 1000px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
