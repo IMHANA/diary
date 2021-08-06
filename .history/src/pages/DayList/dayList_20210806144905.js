@@ -20,7 +20,7 @@ export default class dayList extends Component {
                             <span id='month_sub'>월의 일기 8개</span>
                         </div>
                         <div className='list-con2'>
-                            <TextField id="standard-secondary" label="일기찾기" color="secondary" style={{width: '80px'}} />
+                            <TextField id="standard-secondary" label="태그찾기" color="secondary" style={{width: '80px'}} />
                             <Add style={{fontSize: '45px'}}/>
                             <ArrowBack style={{fontSize: '45px'}} />
                         </div>

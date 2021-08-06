@@ -56,14 +56,12 @@
     left: 50%;
     transform: translateX(-50%);
     width: 61px;
-    font-weight: bolder;
 }
 
 #month_sub {
     position: absolute;
     right: 37%;
     top:26px;
-    font-weight: bolder;
     /* margin: 0 50px 0 15px; */
 }
 
@@ -71,17 +69,12 @@
     margin-bottom: 40px;
 }
 
-.list_box_span:hover {
+.list_box:hover {
     color:darkorange;
-    cursor: pointer;
 }
 
 .icon {
     padding: 0 50px 0 50px;
-}
-
-.icon:hover {
-    cursor: pointer;
 }
 
 .icon2 {

@@ -16,50 +16,48 @@ export default class dayList extends Component {
                     </div> */}
                     <div id='list_title'>
                         <div className='list-con'>
-                            <span id='month'>08</span>
-                            <span id='month_sub'>월의 일기 8개</span>
+                            <span id='month'>08</span><span id='month_sub'>월의 일기 8개</span>
                         </div>
-                        <div className='list-con2'>
-                            <TextField id="standard-secondary" label="일기찾기" color="secondary" style={{width: '80px'}} />
-                            <Add style={{fontSize: '45px'}}/>
-                            <ArrowBack style={{fontSize: '45px'}} />
+                        <div className='list-con'><TextField id="standard-secondary" label="태그찾기" color="secondary" style={{width: '80px'}} />
+                        <Add style={{fontSize: '45px'}}/>
+                        <ArrowBack style={{fontSize: '45px'}} />
                         </div>
                     </div>
                     <div>
                         <div className='list_box'>
                             <span className='date'><Minimize/> 0803</span>
                             <Flag className='icon'/>
-                            <span className='list_box_span'>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
+                            <span>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
                         </div>
                         <div className='list_box'> 
                             <span className='date'><Minimize/> 0803</span>
                             <Flag className='icon'/>
-                            <span className='list_box_span'>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
+                            <span>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
                         </div>
                         <div className='list_box'>
                             <span className='date'><Minimize/> 0803</span>
                             <Flag className='icon'/>
-                            <span className='list_box_span'>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
+                            <span>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
                         </div>
                         <div className='list_box'>
                             <span className='date'><Minimize/> 0803</span>
                             <Flag className='icon'/>
-                            <span className='list_box_span'>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
+                            <span>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
                         </div>
                         <div className='list_box'>
                             <span className='date'><Minimize/> 0803</span>
                             <Flag className='icon'/>
-                            <span className='list_box_span'>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
+                            <span>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
                         </div>
                         <div className='list_box'>
                             <span className='date'><Minimize/> 0803</span>
                             <Flag className='icon'/>
-                            <span className='list_box_span'>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
+                            <span>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
                         </div>
                         <div className='list_box'>
                             <span className='date'><Minimize/> 0803</span>
                             <Flag className='icon'/>
-                            <span className='list_box_span'>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
+                            <span>#첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째</span>
                         </div>
                         <div id='more_btn'>
                             <ExpandMore className='icon2'/>
