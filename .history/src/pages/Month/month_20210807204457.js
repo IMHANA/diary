@@ -23,7 +23,7 @@ export default class month extends Component {
           <div className="calendar-item">
             <span className="title"> 01</span>
             <div>
-            <img className="sticker" src={happy} alt={happy}/>
+            <img className="sticker" src={happy} alt={happy} title={happy}/>
                 {/* <EmojiEmotions color='warning' className='monthIcon'/> */}
                 </div>
           </div>
@@ -31,21 +31,21 @@ export default class month extends Component {
           <div className="calendar-item">
             <span className="title"> 02</span>
             <div>
-            <img className="sticker" src={sad} alt={sad}/>
+            <img className="sticker" src={sad} alt={sad} title={sad}/>
                 {/* <FilterVintage color='error' className='monthIcon'/> */}
             </div>
           </div>
           <div className="calendar-item">
             <span className="title"> 03</span>
             <div>
-            <img className="sticker" src={what} alt={what}/>
+            <img className="sticker" src={what} alt={what} title={what}/>
                 {/* <Spa color='secondary' className='monthIcon'/> */}
             </div>
           </div>
           <div className="calendar-item">
             <span className="title"> 04</span>
             <div>
-            <img className="sticker" src={soso} alt={soso}/>
+            <img className="sticker" src={soso} alt={soso} title={soso}/>
                 {/* <WbCloudy color='primary' className='monthIcon'/> */}
             </div>
           </div>
@@ -54,14 +54,14 @@ export default class month extends Component {
           <div className="calendar-item">
             <span className="title"> 05</span>
             <div>
-            <img className="sticker" src={angry} alt={angry}/>
+            <img className="sticker" src={angry} alt={angry} title={angry}/>
                 {/* <MoodBad className='monthIcon'/> */}
             </div>
           </div>
           <div className="calendar-item">
             <span className="title"> 06</span>
             <div>
-            <img className="sticker" src={tired} alt={tired}/>
+            <img className="sticker" src={tired} alt={tired} title={tired}/>
             </div>
           </div>
           <div className="calendar-item">

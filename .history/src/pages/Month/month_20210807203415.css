@@ -9,7 +9,7 @@
 .month_box_container {
     display: flex;
     width: 990px;
-    height: 160px;
+    height: 150px;
 }
 .month_box_container .calendar-item {
     /* display: inline-block; */
@@ -17,7 +17,7 @@
     flex:1;
     padding-top: 10px;
     padding-left: 15px;
-    /* position: absolute; */
+    position: absolute;
 }
 
 .month_box_container .calendar-item .title{
@@ -50,19 +50,11 @@
 }
 
 .title {
-    /* margin-top: 20px; */
-    margin: 0;
-    padding: 0;
+    margin-top: 20px;
 }
 
 .sticker {
-    /* position: relative; */
-    margin-left: 30%;
-    cursor: pointer;
-}
-.sticker:hover {
-    transform: scale(1.3);
-    transition-duration: 0.5s;
-    
+    position: relative;
+    left:50%
 }
 

@@ -54,14 +54,14 @@ export default class month extends Component {
           <div className="calendar-item">
             <span className="title"> 05</span>
             <div>
-            <img className="sticker" src={angry} alt={angry}/>
+            <img className="sticker" src={angry} alt={angry} title={angry}/>
                 {/* <MoodBad className='monthIcon'/> */}
             </div>
           </div>
           <div className="calendar-item">
             <span className="title"> 06</span>
             <div>
-            <img className="sticker" src={tired} alt={tired}/>
+            <img className="sticker" src={tired} alt={tired} title={tired}/>
             </div>
           </div>
           <div className="calendar-item">

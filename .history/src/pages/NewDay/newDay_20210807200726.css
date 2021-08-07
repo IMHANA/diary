@@ -1,0 +1,15 @@
+.icon2 {
+    font-size: 50px;
+}
+
+#paint_area {
+    background-color: palevioletred;
+    width: 100px;
+    height: 100;
+}
+
+#write_area {
+    background-color: none;
+    width: 100px;
+    height: 100;
+}
