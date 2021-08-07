@@ -1,0 +1,61 @@
+#container {
+    display: flex;
+    flex-direction:column;
+
+    height: 100vh;
+
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(252, 245, 233);
+}
+
+.loginput_box {
+    text-align: center;
+    width: 150px;
+    height: 35px;
+    margin-bottom: 30px;
+}
+
+.loginput_box[label] {
+    text-align: center;
+    background-color: white;
+}
+
+input[placeholder] {
+    text-align: center;
+    width: 150px;
+    height: 35px;
+    margin-bottom: 10px;
+}
+
+#login_btn, #sign_up_btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+}
+
+#btn_box {
+    display: flex;
+    justify-content: space-around;
+    width: 150px;
+    
+}
+
+#login_btn {
+    background-color: rgb(255, 182, 45);
+    margin-left: 50px;
+}
+#sign_up_btn {
+    background-color: rgb(55, 137, 139);
+}
+
+#login_btn:hover {
+    cursor: pointer;
+    background-color: rgb(218, 153, 35);
+}
+#sign_up_btn:hover {
+    cursor: pointer;
+    background-color: rgb(51, 123, 124);
+}

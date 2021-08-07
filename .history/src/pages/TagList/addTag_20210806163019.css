@@ -1,0 +1,22 @@
+#write_date {
+    font-weight: bolder;
+    font-size: 25px;
+    color:firebrick;
+}
+
+.inputBox {
+    display:flex;
+    flex-direction: column;
+}
+
+input {
+    width: 50px;
+    margin: 0;
+    padding: 0%;
+}
+
+input[placeholder] {
+    text-align: left;
+    font-size: 90%;
+    margin-bottom: 0;
+}
