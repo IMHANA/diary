@@ -109,6 +109,6 @@
 }
 
 #sketchArea {
-  width: 550px !important;
-  height: 400px !important;
+  width: 550px;
+  height: 400px;
 }

@@ -1,4 +1,4 @@
-import React, { Component, createRef, memo } from 'react';
+import React, { Component, createRef, Memo } from 'react';
 import { Add, ArrowBack, Flag, ExpandMore, Minimize } from '@material-ui/icons';
 import TextField from '@material-ui/core/TextField';
 import './newDay.css';
@@ -8,18 +8,17 @@ import { Delete, SaveAlt } from '@material-ui/icons';
 import { SketchField, Tools } from '../../components/customSketchField';
 import { SketchPicker } from 'react-color';
 
-const Foo = memo(() => {
+const Foo = Memo(() => {
   return (
   <div className="writing-board" contentEditable={true}>
-    하나
-  </div>
+                하나
+              </div>
   )
 })
 export default class NewDay extends Component {
   state = {
     background: '#fff',
     value: 'black',
-    value1: 3
   };
 
   handleChangeComplete = (color) => {
@@ -43,28 +42,13 @@ export default class NewDay extends Component {
   //   const canvas = this.refs.canvas;
   //   const ctx = canvas.getContext("2d");
   // }
-  home = () => {
-    this.setState({ value1: 100 });
-    console.log(this.state.value1);
-  }
 
   render() {
-    console.error = (function() {
-      var error = console.error
-  
-      return function(exception) {
-          if ((exception + '').indexOf('Warning: A component is `contentEditable`') != 0) {
-              error.apply(console, arguments)
-          }
-      }
-  })()
-
     console.log('dsjkhfbd', this.state.value);
     const good = '/image/good.png';
 
     return (
       <div id="container">
-        {this.state.value}
         <div style={{ width: '75%', height: '5%' }} id="mid_container">
           <div id="list_container">
             <TextField
@@ -96,14 +80,12 @@ export default class NewDay extends Component {
             {/* <div id='paint_area'></div> */}
             {/* <CanvasDraw brushColor="rgba(155,12,60,0.3)" onChange={() => console.log("onChange")} /> */}
             <SketchField
-            ref={(c) => (this._sketch = c)}
-              width={550}
-              height={400}
+              width="550px"
+              height="400px"
               tool={Tools.Pencil}
               lineColor={this.state.value}
-              lineWidth={this.state.value1}
+              lineWidth={3}
               backgroundColor="#fff"
-              onChange={(e)=> console.log(e)}
             />
 
             <div style={{ display: 'none' }}></div>
@@ -126,7 +108,6 @@ export default class NewDay extends Component {
             <input type="color" onChange={this.handleChangePenColor} />
           </div>
           <div id="btn_container">
-            <button onClick={this.home}>156165</button>
             <IconButton cols="20" rows="10" aria-label="delete" id="cancle_btn">
               <Delete />
             </IconButton>

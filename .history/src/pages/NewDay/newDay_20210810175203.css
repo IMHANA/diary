@@ -108,7 +108,7 @@
   font-size: 25px;
 }
 
-#sketchArea {
-  width: 550px !important;
-  height: 400px !important;
+.sketchArea {
+  width: 550px;
+  height: 400px;
 }

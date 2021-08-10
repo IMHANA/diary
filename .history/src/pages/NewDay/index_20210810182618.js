@@ -45,7 +45,6 @@ export default class NewDay extends Component {
   // }
   home = () => {
     this.setState({ value1: 100 });
-    console.log(this.state.value1);
   }
 
   render() {

@@ -19,7 +19,6 @@ export default class NewDay extends Component {
   state = {
     background: '#fff',
     value: 'black',
-    value1: 3
   };
 
   handleChangeComplete = (color) => {
@@ -44,8 +43,7 @@ export default class NewDay extends Component {
   //   const ctx = canvas.getContext("2d");
   // }
   home = () => {
-    this.setState({ value1: 100 });
-    console.log(this.state.value1);
+    console.log(this._sketch);
   }
 
   render() {
@@ -101,7 +99,7 @@ export default class NewDay extends Component {
               height={400}
               tool={Tools.Pencil}
               lineColor={this.state.value}
-              lineWidth={this.state.value1}
+              lineWidth={3}
               backgroundColor="#fff"
               onChange={(e)=> console.log(e)}
             />

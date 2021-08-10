@@ -44,8 +44,7 @@ export default class NewDay extends Component {
   //   const ctx = canvas.getContext("2d");
   // }
   home = () => {
-    this.setState({ value1: 100 });
-    console.log(this.state.value1);
+    console.log(this._sketch.props);
   }
 
   render() {
