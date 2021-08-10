@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import {Delete, SaveAlt} from '@material-ui/icons';
 // import CanvasDraw from "react-canvas-draw";
 import {SketchField, Tools} from '../../components/customSketchField';
-// import { SketchPicker } from 'react-color';
+// import { SketchPicker } from 'react-color'
 
 
 export default class NewDay extends Component {
@@ -63,7 +63,7 @@ export default class NewDay extends Component {
                         
                         backgroundColor='#fff'
                         />
-                        
+                        {/* <SketchPicker /> */}
           <div style={{display:"none"}}>
           
           </div>
@@ -75,7 +75,6 @@ export default class NewDay extends Component {
           </div>
           
         </div>
-        {/* <div><SketchPicker /></div> */}
         <div id='btn_container'>
         <IconButton cols="20" rows="10" aria-label="delete" id="cancle_btn">
         <Delete />
