@@ -675,7 +675,7 @@ class SketchField extends PureComponent {
     
     // console.log('prevProps.lineColor => ', prevProps.lineColor);
     // console.log(this.props.lineColor);
-    // return true;
+    return true;
 
     if (
       this.props.width !== prevProps.width ||
@@ -693,27 +693,9 @@ class SketchField extends PureComponent {
       }
     }
 
-    // if(this.props.lineColor !== prevProps.lineColor) {
-    //   this._selectedTool = this._tools[this.props.tool];
-    //   //Bring the cursor back to default if it is changed by a tool
-    //   this._fc.defaultCursor = "default";
-    //   if (this._selectedTool) {
-    //     this._selectedTool.configureCanvas(this.props);
-    //   }
-    // } 
-    if(this.props.lineWidth !== prevProps.lineWidth) {
-      this._selectedTool = this._tools[this.props.tool];
-      //Bring the cursor back to default if it is changed by a tool
-      this._fc.defaultCursor = "default";
-      if (this._selectedTool) {
-        this._selectedTool.configureCanvas(this.props);
-      }
-    } 
-
     if (this.props.backgroundColor !== prevProps.backgroundColor) {
       this._backgroundColor(this.props.backgroundColor);
     }
-    
 
     if (
       this.props.value !== prevProps.value ||

@@ -673,10 +673,8 @@ class SketchField extends PureComponent {
 
   componentDidUpdate = (prevProps, prevState) => {
     
-    // console.log('prevProps.lineColor => ', prevProps.lineColor);
-    // console.log(this.props.lineColor);
-    // return true;
-
+    console.log('prevProps => ', prevProps);
+    
     if (
       this.props.width !== prevProps.width ||
       this.props.height !== prevProps.height
@@ -693,27 +691,9 @@ class SketchField extends PureComponent {
       }
     }
 
-    // if(this.props.lineColor !== prevProps.lineColor) {
-    //   this._selectedTool = this._tools[this.props.tool];
-    //   //Bring the cursor back to default if it is changed by a tool
-    //   this._fc.defaultCursor = "default";
-    //   if (this._selectedTool) {
-    //     this._selectedTool.configureCanvas(this.props);
-    //   }
-    // } 
-    if(this.props.lineWidth !== prevProps.lineWidth) {
-      this._selectedTool = this._tools[this.props.tool];
-      //Bring the cursor back to default if it is changed by a tool
-      this._fc.defaultCursor = "default";
-      if (this._selectedTool) {
-        this._selectedTool.configureCanvas(this.props);
-      }
-    } 
-
     if (this.props.backgroundColor !== prevProps.backgroundColor) {
       this._backgroundColor(this.props.backgroundColor);
     }
-    
 
     if (
       this.props.value !== prevProps.value ||
@@ -732,14 +712,12 @@ class SketchField extends PureComponent {
       width ? { width: width } : {},
       height ? { height: height } : { height: 512 }
     );
-    console.log("#######");
-    console.log(this.props);
     return (
       <div
         className={className}
         ref={(c) => (this._container = c)}
         style={canvasDivStyle}>
-        <canvas id={uuid4()} ref={(c) => (this._canvas = c)} >
+        <canvas id={uuid4()} ref={(c) => (this._canvas = c)}>
           Sorry, Canvas HTML5 element is not supported by your browser :(
         </canvas>
       </div>

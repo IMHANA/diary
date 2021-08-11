@@ -6,9 +6,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { Delete, SaveAlt } from '@material-ui/icons';
 // import CanvasDraw from "react-canvas-draw";
 import { SketchField, Tools } from '../../components/customSketchField';
-// import { SketchPicker } from 'react-color';
+import { SketchPicker } from 'react-color';
 
-const writeBoard = memo(() => {
+const Foo = memo(() => {
   return (
   <div className="writing-board" contentEditable={true}>
     하나
@@ -22,17 +22,14 @@ export default class NewDay extends Component {
     value1: 3
   };
 
-  // handleChangeComplete = (color) => {
-  //   this.setState({ background: color.hex });
-  // };
+  handleChangeComplete = (color) => {
+    this.setState({ background: color.hex });
+  };
 
   handleChangePenColor = (e) => {
     // const penColor = e.target.value;
-    // this.setState({ value: e.target.value });
-    // console.log('color: ', e.target.value);
-    if (this.state.value !== e.target.value  
-    )
     this.setState({ value: e.target.value });
+    console.log('color: ', e.target.value);
   };
   // state = {
   //   color: "#ffc600",
@@ -62,9 +59,9 @@ export default class NewDay extends Component {
       }
   })()
 
-    // console.log('dsjkhfbd', this.state.value);
+    console.log('dsjkhfbd', this.state.value);
     const good = '/image/good.png';
-    
+
     return (
       <div id="container">
         {this.state.value}
@@ -103,10 +100,11 @@ export default class NewDay extends Component {
               width={550}
               height={400}
               tool={Tools.Pencil}
-              lineColor={this.state.value}
+              // lineColor={this.state.value}
+              lineColor={'#ff3222'}
               lineWidth={this.state.value1}
               backgroundColor="#fff"
-              // onChange={(e)=> console.log(e)}
+              onChange={(e)=> console.log(e)}
             />
 
             <div style={{ display: 'none' }}></div>
@@ -114,7 +112,7 @@ export default class NewDay extends Component {
 
             <div className="write_area">
               {/* <textarea className="writing-board"></textarea> */}
-              <writeBoard />
+              <Foo />
               {/* <div className="writing-board" contentEditable={true}>
                 하나
               </div> */}
