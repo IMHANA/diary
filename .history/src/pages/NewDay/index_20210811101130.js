@@ -36,8 +36,7 @@ export default class NewDay extends Component {
   };
 
   handleChangeBackGroundColor = (e) => {
-    if (this.state.backgroundColor !== e.target.value) 
-    this.setState({ backgroundColor: e.target.value});
+    if (this.state.backgroundColor !== e.target.value) this.setState({ backgroundColor: e.target.value});
   }
   // state = {
   //   color: "#ffc600",
@@ -133,8 +132,8 @@ export default class NewDay extends Component {
         onChangeComplete={ this.handleChangeComplete }
       /> */}
             {/* <label for="colorWell">Color:</label> */}
-            <input type="color" id='brush-color-box' onChange={this.handleChangePenColor} />
-            <input type="color" id='back-color-box' value="#ffffff" onChange={this.handleChangeBackGroundColor}/>
+            <input type="color" onChange={this.handleChangePenColor} />
+            <input type="color" onChange={this.handleChangeBackGroundColor} />
           </div>
           <div id="btn_container">
             <button onClick={this.home}>156165</button>

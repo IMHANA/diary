@@ -108,9 +108,8 @@
   font-size: 25px;
 }
 
-#brush-color-box, #back-color-box {
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  border: none;
+#brush-color-box {
+  outline: none;
+  width: 100px;
+  height: 20px;
 }

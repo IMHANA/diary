@@ -109,8 +109,6 @@
 }
 
 #brush-color-box, #back-color-box {
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  border: none;
+  width: 100px;
+  height: 20px;
 }
