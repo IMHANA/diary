@@ -19,15 +19,15 @@ export default class Main extends Component {
   }
 
   handleIdChange = (e) => {
-    console.log(e.target.value);
+    console.log(e.target.user_id);
     this.setState({
-      user_id: e.target.value,
+      user_id: e.target.user_id,
     });
   };
   handlePwdChange = (e) => {
-    console.log(e.target.value);
+    console.log(e.target.pwd);
     this.setState({
-      pwd: e.target.value,
+      pwd: e.target.pwd,
     });
   };
 
@@ -44,8 +44,6 @@ export default class Main extends Component {
   goDiary = (e) => {
     // e.preventDefault();
 
-    console.log(this.state.user_id);
-    console.log(this.state.pwd);
     if (
       this.state.user_id === '' ||
       this.state.user_id === 'null' ||
@@ -64,43 +62,13 @@ export default class Main extends Component {
       }),
     })
       .then((response) => response.json())
-      .then((json) => {
-        // if (!json) {
-        //   throw new Error('db에 값이 없는걸??');
-        // } else {
-        console.log(json);
-        if (json) {
-          alert('ok');
+      .then((data) => {
+        if (data) {
           this.props.history.push('/monthly');
+        } else {
+          e.preventDefault();
         }
-      })
-      .catch((e) => alert('안돼 돌아가'));
-
-    //-----------------------------
-    //   if (
-    //     response.user_id !== this.state.user_id ||
-    //     response.pwd !== this.state.pwd
-    //   ) {
-    //     console.log(`failed to fetch [${response.code}]`);
-    //   } else {
-    //     this.props.history.push('/monthly');
-    //     return response.json();
-    //   }
-    // })
-    //-----------------------------
-    // .then((json) => {
-    //   this.props.history.push('/monthly');
-    // })
-    // .catch((e) => console.log(e));
-
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   console.log(data);
-    //   this.props.history.push('/monthly');
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
+      });
 
     this.setState({
       user_id: '',

@@ -63,35 +63,22 @@ export default class Main extends Component {
         pwd: this.state.pwd,
       }),
     })
-      .then((response) => response.json())
-      .then((json) => {
-        // if (!json) {
-        //   throw new Error('db에 값이 없는걸??');
-        // } else {
-        console.log(json);
-        if (json) {
-          alert('ok');
+      .then((response) => {
+        console.log(response);
+        if (
+          response.user_id !== this.state.user_id ||
+          response.pwd !== this.state.pwd
+        ) {
+          console.log(`failed to fetch [${response.code}]`);
+        } else {
           this.props.history.push('/monthly');
+          return response.json();
         }
       })
-      .catch((e) => alert('안돼 돌아가'));
-
-    //-----------------------------
-    //   if (
-    //     response.user_id !== this.state.user_id ||
-    //     response.pwd !== this.state.pwd
-    //   ) {
-    //     console.log(`failed to fetch [${response.code}]`);
-    //   } else {
-    //     this.props.history.push('/monthly');
-    //     return response.json();
-    //   }
-    // })
-    //-----------------------------
-    // .then((json) => {
-    //   this.props.history.push('/monthly');
-    // })
-    // .catch((e) => console.log(e));
+      // .then((json) => {
+      //   this.props.history.push('/monthly');
+      // })
+      .catch((e) => console.log(e));
 
     // .then((response) => response.json())
     // .then((data) => {

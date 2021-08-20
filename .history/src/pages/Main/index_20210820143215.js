@@ -74,7 +74,7 @@ export default class Main extends Component {
           this.props.history.push('/monthly');
         }
       })
-      .catch((e) => alert('안돼 돌아가'));
+      .catch((e) => console.log(e));
 
     //-----------------------------
     //   if (

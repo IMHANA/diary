@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './main.css';
 import TextField from '@material-ui/core/TextField';
-import { BrowserRouter as Link } from 'react-router-dom';
 
 export default class Main extends Component {
   constructor() {
@@ -11,23 +10,18 @@ export default class Main extends Component {
       isLoginView: true,
       user_id: '',
       pwd: '',
-      user_info: [],
     };
 
     this.changeBtnNum = this.changeBtnNum.bind(this);
     this.signUp = this.signUp.bind(this);
   }
 
-  handleIdChange = (e) => {
-    console.log(e.target.value);
+  handleChange = (e) => {
+    console.log(e.target.user_id);
+    console.log(e.target.pwd);
     this.setState({
-      user_id: e.target.value,
-    });
-  };
-  handlePwdChange = (e) => {
-    console.log(e.target.value);
-    this.setState({
-      pwd: e.target.value,
+      user_id: e.target.user_id,
+      pwd: e.target.pwd,
     });
   };
 
@@ -44,8 +38,6 @@ export default class Main extends Component {
   goDiary = (e) => {
     // e.preventDefault();
 
-    console.log(this.state.user_id);
-    console.log(this.state.pwd);
     if (
       this.state.user_id === '' ||
       this.state.user_id === 'null' ||
@@ -64,49 +56,12 @@ export default class Main extends Component {
       }),
     })
       .then((response) => response.json())
-      .then((json) => {
-        // if (!json) {
-        //   throw new Error('db에 값이 없는걸??');
-        // } else {
-        console.log(json);
-        if (json) {
-          alert('ok');
-          this.props.history.push('/monthly');
-        }
-      })
-      .catch((e) => alert('안돼 돌아가'));
-
-    //-----------------------------
-    //   if (
-    //     response.user_id !== this.state.user_id ||
-    //     response.pwd !== this.state.pwd
-    //   ) {
-    //     console.log(`failed to fetch [${response.code}]`);
-    //   } else {
-    //     this.props.history.push('/monthly');
-    //     return response.json();
-    //   }
-    // })
-    //-----------------------------
-    // .then((json) => {
-    //   this.props.history.push('/monthly');
-    // })
-    // .catch((e) => console.log(e));
-
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   console.log(data);
-    //   this.props.history.push('/monthly');
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
+      .then((data) => console.log(data));
 
     this.setState({
       user_id: '',
       pwd: '',
     });
-    alert('여기까지는 되나');
   };
 
   render() {
@@ -120,7 +75,7 @@ export default class Main extends Component {
             placeholder="id"
             name="user_id"
             value={this.state.user_id}
-            onChange={this.handleIdChange}
+            onChange={this.handleChange}
           />
           {/* <input type="text" placeholder='ID'></input> */}
         </div>
@@ -132,7 +87,7 @@ export default class Main extends Component {
             placeholder="pwd"
             name="pwd"
             value={this.state.pwd}
-            onChange={this.handlePwdChange}
+            onChange={this.handleChange}
           />
           {/* <input type="text" placeholder="PW"></input> */}
         </div>

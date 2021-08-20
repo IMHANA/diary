@@ -69,12 +69,11 @@ export default class Main extends Component {
         //   throw new Error('db에 값이 없는걸??');
         // } else {
         console.log(json);
-        if (json) {
-          alert('ok');
-          this.props.history.push('/monthly');
-        }
+        alert('ok');
+        this.props.history.push('/monthly');
+        // }
       })
-      .catch((e) => alert('안돼 돌아가'));
+      .catch((e) => console.log(e));
 
     //-----------------------------
     //   if (

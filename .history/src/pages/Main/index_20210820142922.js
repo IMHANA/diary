@@ -65,16 +65,14 @@ export default class Main extends Component {
     })
       .then((response) => response.json())
       .then((json) => {
-        // if (!json) {
-        //   throw new Error('db에 값이 없는걸??');
-        // } else {
-        console.log(json);
-        if (json) {
+        if (!json) {
+          throw new Error('db에 값이 없는걸??');
+        } else {
           alert('ok');
           this.props.history.push('/monthly');
         }
       })
-      .catch((e) => alert('안돼 돌아가'));
+      .catch((e) => throw new Error('db에 값이 없는걸??'));
 
     //-----------------------------
     //   if (

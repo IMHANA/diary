@@ -55,47 +55,33 @@ export default class Main extends Component {
       e.preventDefault();
     }
 
-    fetch('http://localhost:3003/user/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        user_id: this.state.user_id,
-        pwd: this.state.pwd,
-      }),
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        // if (!json) {
-        //   throw new Error('db에 값이 없는걸??');
-        // } else {
-        console.log(json);
-        if (json) {
-          alert('ok');
-          this.props.history.push('/monthly');
-        }
-      })
-      .catch((e) => alert('안돼 돌아가'));
-
-    //-----------------------------
-    //   if (
-    //     response.user_id !== this.state.user_id ||
-    //     response.pwd !== this.state.pwd
-    //   ) {
-    //     console.log(`failed to fetch [${response.code}]`);
-    //   } else {
-    //     this.props.history.push('/monthly');
-    //     return response.json();
-    //   }
-    // })
-    //-----------------------------
-    // .then((json) => {
-    //   this.props.history.push('/monthly');
-    // })
-    // .catch((e) => console.log(e));
+    let options = async (e) => {
+      let response = fetch('http://localhost:3003/user/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: this.state.user_id,
+          pwd: this.state.pwd,
+        }),
+      });
+      if (response.status === 200) {
+        const data = await response.json();
+        return data.rates(e);
+      } else {
+        throw new Error('안돼 안돼~');
+      }
+      // let response = await fetch(url, options);
+      // let responseOK = response && response.ok;
+      // if(responseOK) {
+      //   let data = await response.json();
+      // }
+    };
 
     // .then((response) => response.json())
+    // .then(json => response.ok)
     // .then((data) => {
     //   console.log(data);
+    //   console.log(response.ok)
     //   this.props.history.push('/monthly');
     // })
     // .catch((err) => {
