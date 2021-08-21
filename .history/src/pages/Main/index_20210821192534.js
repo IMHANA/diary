@@ -37,19 +37,16 @@ class Main extends Component {
 
   // 로그인 시 인풋창값 state에 넣어주기
   handleIdChange = (e) => {
-    // const { cookies } = this.props;
+    const { cookies } = this.props;
+    cookies.set('user_id', '');
+    console.log(cookies.get('user_id'));
+    // console.log(e.target.value);
     this.setState({
       user_id: e.target.value,
     });
-    // cookies.set('user_id', this.state.user_id);
-    // console.log(cookies.get('user_id'));
-    // console.log(e.target.value);
   };
   handlePwdChange = (e) => {
     // console.log(e.target.value);
-    const { cookies } = this.props;
-    cookies.set('user_id', this.state.user_id);
-    console.log(cookies.get('user_id'));
     this.setState({
       pwd: e.target.value,
     });

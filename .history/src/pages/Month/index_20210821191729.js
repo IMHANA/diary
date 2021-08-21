@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './month.css';
+import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 import {
   EmojiEmotions,
   FilterVintage,
@@ -8,11 +10,10 @@ import {
   MoodBad,
 } from '@material-ui/icons';
 import { sizeHeight } from '@material-ui/system';
-import { withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
+import { CookiesProvider } from 'react-cookie';
 // import "../../assets";
 class Month extends Component {
-  static propsTypes = {
+  static propTypes = {
     cookies: instanceOf(Cookies).isRequired,
   };
 
@@ -20,32 +21,21 @@ class Month extends Component {
     super(props);
 
     const { cookies } = props;
+
     this.state = {
       user_id: cookies.get('user_id'),
-      montly: '',
-      sticker: '',
     };
   }
 
   componentDidMount() {
-    fetch('http://localhost:3003/diary/diary_year/2021', {
+    fetch('http://localhost:3003/month/list', {
       method: 'GET',
     })
       .then((response) => response.json())
-      .then((data) => this.setState({ montly: data }));
-
-    fetch('http://localhost:3003/diary/montly_sticker/2021', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((data) => this.setState({ sticker: data }));
+      .then((data) => this.setState({ groupList: data }));
   }
 
   render() {
-    const { user_id } = this.state;
-    console.log('잘 오나...', user_id);
-    console.log(this.state.montly);
-    console.log(this.state.sticker);
     // let name = {happy, angry, good, sad, soso, tired, what};
     // const url = '/image' + name + '.png';
     const happy = '/image/happy.png';
@@ -63,6 +53,7 @@ class Month extends Component {
           <div className="calendar-item">
             <span className="title"> 01</span>
             <div>
+              <h1>{this.state.user_id}</h1>
               <img className="sticker" src={happy} alt={happy} />
               {/* <EmojiEmotions color='warning' className='monthIcon'/> */}
             </div>

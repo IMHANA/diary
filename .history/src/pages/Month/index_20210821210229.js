@@ -22,7 +22,7 @@ class Month extends Component {
     const { cookies } = props;
     this.state = {
       user_id: cookies.get('user_id'),
-      montly: '',
+      montly: [],
       sticker: '',
     };
   }

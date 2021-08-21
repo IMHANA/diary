@@ -37,19 +37,16 @@ class Main extends Component {
 
   // 로그인 시 인풋창값 state에 넣어주기
   handleIdChange = (e) => {
-    // const { cookies } = this.props;
+    const { cookies } = this.props;
+    cookies.set('user_id', '');
+    console.log(cookies.get('user_id'));
+    console.log(e.target.value);
     this.setState({
       user_id: e.target.value,
     });
-    // cookies.set('user_id', this.state.user_id);
-    // console.log(cookies.get('user_id'));
-    // console.log(e.target.value);
   };
   handlePwdChange = (e) => {
-    // console.log(e.target.value);
-    const { cookies } = this.props;
-    cookies.set('user_id', this.state.user_id);
-    console.log(cookies.get('user_id'));
+    console.log(e.target.value);
     this.setState({
       pwd: e.target.value,
     });
@@ -57,13 +54,13 @@ class Main extends Component {
 
   // 회원가입 시 인풋창값 state에 넣어주기
   handleNewIdChange = (e) => {
-    // console.log('new_id : ', e.target.value);
+    console.log('new_id : ', e.target.value);
     this.setState({
       new_id: e.target.value,
     });
   };
   handleNewPwdChange = (e) => {
-    // console.log('new_pwd : ', e.target.value);
+    console.log('new_pwd : ', e.target.value);
     this.setState({
       new_pwd: e.target.value,
     });
@@ -128,8 +125,8 @@ class Main extends Component {
   goDiary = (e) => {
     // e.preventDefault();
 
-    // console.log(this.state.user_id);
-    // console.log(this.state.pwd);
+    console.log(this.state.user_id);
+    console.log(this.state.pwd);
     if (
       this.state.user_id === '' ||
       this.state.user_id === 'null' ||
@@ -152,7 +149,7 @@ class Main extends Component {
         // if (!json) {
         //   throw new Error('db에 값이 없는걸??');
         // } else {
-        // console.log(json);
+        console.log(json);
         if (json) {
           alert('ok');
           this.props.history.push('/monthly');

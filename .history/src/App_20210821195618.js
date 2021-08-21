@@ -29,14 +29,11 @@ class App extends Component {
 
   render() {
     const { user_id } = this.state;
-    let style = {
-      display: 'none',
-    };
 
     console.log('메인을 불러온다!', user_id);
     return (
       <div>
-        <button onClick={this.handleNameChange} style={style}></button>
+        <button onClick={this.handleNameChange} style="display:none"></button>
         <MainTemplates />
       </div>
     );

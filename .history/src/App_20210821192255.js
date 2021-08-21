@@ -16,27 +16,24 @@ class App extends Component {
 
     const { cookies } = props;
     this.state = {
-      user_id: cookies.get('user_id') || 'Ben',
+      name: cookies.get('name') || 'Ben',
     };
   }
 
-  handleNameChange(user_id) {
+  handleNameChange(name) {
     const { cookies } = this.props;
 
-    cookies.set('user_id', user_id, { path: '/' });
-    this.setState({ user_id });
+    cookies.set('user_id', name, { path: '/' });
+    this.setState({ name });
   }
 
   render() {
-    const { user_id } = this.state;
-    let style = {
-      display: 'none',
-    };
+    const { name } = this.state;
 
-    console.log('메인을 불러온다!', user_id);
+    console.log('메인을 불러온다!', name);
     return (
       <div>
-        <button onClick={this.handleNameChange} style={style}></button>
+        <button onClick={this.handleNameChange}></button>
         <MainTemplates />
       </div>
     );

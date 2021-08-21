@@ -22,7 +22,7 @@ class Month extends Component {
     const { cookies } = props;
     this.state = {
       user_id: cookies.get('user_id'),
-      montly: '',
+      montly: [],
       sticker: '',
     };
   }
@@ -44,8 +44,6 @@ class Month extends Component {
   render() {
     const { user_id } = this.state;
     console.log('잘 오나...', user_id);
-    console.log(this.state.montly);
-    console.log(this.state.sticker);
     // let name = {happy, angry, good, sad, soso, tired, what};
     // const url = '/image' + name + '.png';
     const happy = '/image/happy.png';

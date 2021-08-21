@@ -13,39 +13,12 @@ import { instanceOf } from 'prop-types';
 // import "../../assets";
 class Month extends Component {
   static propsTypes = {
-    cookies: instanceOf(Cookies).isRequired,
+    coookies: instanceOf(Cookies).isRequired,
   };
-
   constructor(props) {
     super(props);
-
-    const { cookies } = props;
-    this.state = {
-      user_id: cookies.get('user_id'),
-      montly: '',
-      sticker: '',
-    };
   }
-
-  componentDidMount() {
-    fetch('http://localhost:3003/diary/diary_year/2021', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((data) => this.setState({ montly: data }));
-
-    fetch('http://localhost:3003/diary/montly_sticker/2021', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((data) => this.setState({ sticker: data }));
-  }
-
   render() {
-    const { user_id } = this.state;
-    console.log('잘 오나...', user_id);
-    console.log(this.state.montly);
-    console.log(this.state.sticker);
     // let name = {happy, angry, good, sad, soso, tired, what};
     // const url = '/image' + name + '.png';
     const happy = '/image/happy.png';
