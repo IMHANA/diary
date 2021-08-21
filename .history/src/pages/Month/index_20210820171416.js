@@ -11,16 +11,6 @@ import { sizeHeight } from '@material-ui/system';
 import { CookiesProvider } from 'react-cookie';
 // import "../../assets";
 export default class Month extends Component {
-  constructor(props) {}
-
-  componentDidMount() {
-    fetch('http://localhost:3003/month/list', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((data) => this.setState({ groupList: data }));
-  }
-
   render() {
     // let name = {happy, angry, good, sad, soso, tired, what};
     // const url = '/image' + name + '.png';

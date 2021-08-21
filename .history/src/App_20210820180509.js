@@ -20,24 +20,15 @@ class App extends Component {
     };
   }
 
-  handleNameChange(name) {
-    const { cookies } = this.props;
-
-    cookies.set('name', name, { path: '/' });
-    this.setState({ name });
-  }
-
   render() {
-    const { name } = this.state;
-
-    console.log('메인을 불러온다!', name);
+    console.log('메인을 불러온다!');
     return (
       <div>
-        <button onClick={this.handleNameChange}></button>
+        {this.name}
         <MainTemplates />
       </div>
     );
   }
 }
 
-export default withCookies(App);
+export default App;

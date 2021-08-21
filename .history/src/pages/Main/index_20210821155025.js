@@ -68,6 +68,12 @@ class Main extends Component {
 
   // 로그인 화면에서 가입버튼 누르면 가입버튼만 보이게
   changeBtnNum() {
+    console.log(
+      'new_id: ',
+      this.state.new_id,
+      ' new_pwd: ',
+      this.state.new_pwd
+    );
     this.setState({ isLoginView: false });
   }
 
@@ -79,12 +85,6 @@ class Main extends Component {
       this.state.new_pwd !== '' ||
       this.state.new_pwd !== 'null'
     ) {
-      console.log(
-        'new_id: ',
-        this.state.new_id,
-        ' new_pwd: ',
-        this.state.new_pwd
-      );
       fetch('http://localhost:3003/user/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -93,37 +93,20 @@ class Main extends Component {
           pwd: this.state.new_pwd,
         }),
       })
-        .then(function (response) {
-          this.setState({
-            new_id: '',
-            new_pwd: '',
-          });
-          if (response.ok) {
-            // this.set({ isLoginView: true });
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          if (json) {
             alert('가입완료, 로그인을 해주세요.');
-            // this.setLogView();
-          } else {
-            throw new Error('Someting went wrong.');
+            this.setState({ isLoginView: true });
           }
-          // this.set({ isLoginView: true });
         })
-        // .then((response) => this.set({ isLoginView: true }))
-        // .then(function (json) {
-        //   alert('가입완료, 로그인을 해주세요.', json);
-        //   this.setState({ isLoginView: true });
-        // })
-        .catch(function (error) {
-          alert('아이디 중복입니다.');
-        });
+        .catch((e) => alert('안돼 돌아가'));
+    } else {
+      e.preventDefault();
     }
-    // this.setState({
-    //   new_id: '',
-    //   new_pwd: '',
-    // });
+    // this.setState({ isLoginView: true });
   }
-  // setLogView() {
-  //   this.set({ isLoginView: true });
-  // }
 
   //로그인 후 monthly 화면으로 이동
   goDiary = (e) => {
@@ -156,6 +139,7 @@ class Main extends Component {
         console.log(json);
         if (json) {
           alert('ok');
+
           this.props.history.push('/monthly');
           // setCookie('user_id', this.state.user_id, { path: '/' });
         }

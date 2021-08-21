@@ -33,11 +33,10 @@ class App extends Component {
     console.log('메인을 불러온다!', name);
     return (
       <div>
-        <button onClick={this.handleNameChange}></button>
         <MainTemplates />
       </div>
     );
   }
 }
 
-export default withCookies(App);
+export default App;

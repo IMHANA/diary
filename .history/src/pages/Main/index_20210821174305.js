@@ -94,18 +94,12 @@ class Main extends Component {
         }),
       })
         .then(function (response) {
-          this.setState({
-            new_id: '',
-            new_pwd: '',
-          });
           if (response.ok) {
-            // this.set({ isLoginView: true });
             alert('가입완료, 로그인을 해주세요.');
-            // this.setLogView();
+            this.set({ isLoginView: true, new_id: '', new_pwd: '' });
           } else {
             throw new Error('Someting went wrong.');
           }
-          // this.set({ isLoginView: true });
         })
         // .then((response) => this.set({ isLoginView: true }))
         // .then(function (json) {
@@ -114,16 +108,13 @@ class Main extends Component {
         // })
         .catch(function (error) {
           alert('아이디 중복입니다.');
+          this.setState({
+            new_id: '',
+            new_pwd: '',
+          });
         });
     }
-    // this.setState({
-    //   new_id: '',
-    //   new_pwd: '',
-    // });
   }
-  // setLogView() {
-  //   this.set({ isLoginView: true });
-  // }
 
   //로그인 후 monthly 화면으로 이동
   goDiary = (e) => {

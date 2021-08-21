@@ -33,7 +33,7 @@ class App extends Component {
     console.log('메인을 불러온다!', name);
     return (
       <div>
-        <button onClick={this.handleNameChange}></button>
+        <button onClick={handleNameChange('dd')}></button>
         <MainTemplates />
       </div>
     );

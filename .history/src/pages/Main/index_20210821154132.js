@@ -35,7 +35,6 @@ class Main extends Component {
   //     name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
   // };
 
-  // 로그인 시 인풋창값 state에 넣어주기
   handleIdChange = (e) => {
     const { cookies } = this.props;
     cookies.set('dfd', 'dff');
@@ -52,7 +51,6 @@ class Main extends Component {
     });
   };
 
-  // 회원가입 시 인풋창값 state에 넣어주기
   handleNewIdChange = (e) => {
     console.log('new_id : ', e.target.value);
     this.setState({
@@ -66,66 +64,49 @@ class Main extends Component {
     });
   };
 
-  // 로그인 화면에서 가입버튼 누르면 가입버튼만 보이게
+  // 로그인 화면에서 가입버튼 누르면
   changeBtnNum() {
+    console.log(
+      'new_id: ',
+      this.state.new_id,
+      ' new_pwd: ',
+      this.state.new_pwd
+    );
     this.setState({ isLoginView: false });
   }
 
   // 가입버튼 누르면 id 중복체크 하고 insert
   signUp(e) {
     if (
-      this.state.new_id !== '' ||
-      this.state.new_id !== 'null' ||
-      this.state.new_pwd !== '' ||
-      this.state.new_pwd !== 'null'
+      this.state.new_id === '' ||
+      this.state.new_id === 'null' ||
+      this.state.new_pwd === '' ||
+      this.state.new_pwd === 'null'
     ) {
-      console.log(
-        'new_id: ',
-        this.state.new_id,
-        ' new_pwd: ',
-        this.state.new_pwd
-      );
-      fetch('http://localhost:3003/user/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          user_id: this.state.new_id,
-          pwd: this.state.new_pwd,
-        }),
-      })
-        .then(function (response) {
-          this.setState({
-            new_id: '',
-            new_pwd: '',
-          });
-          if (response.ok) {
-            // this.set({ isLoginView: true });
-            alert('가입완료, 로그인을 해주세요.');
-            // this.setLogView();
-          } else {
-            throw new Error('Someting went wrong.');
-          }
-          // this.set({ isLoginView: true });
-        })
-        // .then((response) => this.set({ isLoginView: true }))
-        // .then(function (json) {
-        //   alert('가입완료, 로그인을 해주세요.', json);
-        //   this.setState({ isLoginView: true });
-        // })
-        .catch(function (error) {
-          alert('아이디 중복입니다.');
-        });
+      e.preventDefault();
     }
-    // this.setState({
-    //   new_id: '',
-    //   new_pwd: '',
-    // });
-  }
-  // setLogView() {
-  //   this.set({ isLoginView: true });
-  // }
 
-  //로그인 후 monthly 화면으로 이동
+    fetch('http://localhost:3003/user/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: this.state.new_id,
+        pwd: this.state.new_pwd,
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        if (json) {
+          alert('가입완료, 로그인을 해주세요.');
+          this.setState({ isLoginView: true });
+        }
+      })
+      .catch((e) => alert('안돼 돌아가'));
+
+    this.setState({ isLoginView: true });
+  }
+
   goDiary = (e) => {
     // e.preventDefault();
 
@@ -156,6 +137,7 @@ class Main extends Component {
         console.log(json);
         if (json) {
           alert('ok');
+
           this.props.history.push('/monthly');
           // setCookie('user_id', this.state.user_id, { path: '/' });
         }
