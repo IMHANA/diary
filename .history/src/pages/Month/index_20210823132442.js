@@ -10,6 +10,7 @@ import {
 import { sizeHeight } from '@material-ui/system';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
+// import "../../assets";
 class Month extends Component {
   static propsTypes = {
     cookies: instanceOf(Cookies).isRequired,
@@ -23,20 +24,6 @@ class Month extends Component {
       user_id: cookies.get('user_id'),
       montly: '',
       sticker: [],
-      i_num_arr: [
-        { month: '01', emoji: 'soso' },
-        { month: '02', emoji: 'soso' },
-        { month: '03', emoji: 'soso' },
-        { month: '04', emoji: 'soso' },
-        { month: '05', emoji: 'soso' },
-        { month: '06', emoji: 'soso' },
-        { month: '07', emoji: 'soso' },
-        { month: '08', emoji: 'soso' },
-        { month: '09', emoji: 'soso' },
-        { month: '10', emoji: 'soso' },
-        { month: '11', emoji: 'soso' },
-        { month: '12', emoji: 'soso' },
-      ],
     };
   }
 
@@ -60,38 +47,56 @@ class Month extends Component {
     const { user_id } = this.state;
     console.log('잘 오나...', user_id);
     console.log(this.state.montly);
+    console.log(this.state.sticker);
+    // let name = {happy, angry, good, sad, soso, tired, what};
+    // const url = '/image' + name + '.png';
 
-    const realArr = this.state.i_num_arr.map((arr) => {
-      this.state.sticker.forEach((val) => {
-        const month = val.ds.substring(5, 7);
+    const list = [];
+    const i_num_arr = [
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+      '10',
+      '11',
+      '12',
+    ];
+    this.state.sticker.forEach((arr) => {
+      const month = arr.ds.substring(5, 7);
 
-        if (arr.month === month) {
-          arr.emoji = val.sticker;
+      i_num_arr.forEach((val) => {
+        if (month === val) {
+          list.push(
+            <div className="calendar-item">
+              <span className="title"> {month}</span>
+              <div>
+                <img
+                  className="sticker"
+                  src={`/image/${arr.sticker}.png`}
+                  alt="이미지 설명"
+                  title="마우스 오버 시 나오는 설명"
+                />
+              </div>
+            </div>
+          );
         }
       });
-      return arr;
+      // if (arr.sticker === 1) {
+      //   emoji = angry;
+      // } else if (arr.sticker === 2) {
+      //   emoji = good;
+      // }
     });
-    console.log('realArr', realArr);
 
     return (
       <div id="container">
-        <div className="month_box_container first-floor">
-          {realArr.map((arr) => {
-            return (
-              <div className="calendar-item">
-                <span className="title">{arr.month}</span>
-                <div>
-                  <img
-                    className="sticker"
-                    src={`/image/${arr.emoji}.png`}
-                    alt="이미지 설명"
-                    title="마우스 오버 시 나오는 설명"
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {/* <p>여기 monthly!!!!!</p> */}
+        <div className="month_box_container first-floor">{list}</div>
 
         <div id="year_row">
           <span>20</span>

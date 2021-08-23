@@ -10,6 +10,7 @@ import {
 import { sizeHeight } from '@material-ui/system';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
+// import "../../assets";
 class Month extends Component {
   static propsTypes = {
     cookies: instanceOf(Cookies).isRequired,
@@ -61,9 +62,16 @@ class Month extends Component {
     console.log('잘 오나...', user_id);
     console.log(this.state.montly);
 
-    const realArr = this.state.i_num_arr.map((arr) => {
-      this.state.sticker.forEach((val) => {
+    // console.log('i_num_arr: ', this.state.i_num_arr);
+    // console.log('sticker: ', this.state.sticker);
+
+    const realArr = this.state.i_num_arr.map((arr, idx) => {
+      // console.log('arr: ', arr);
+      // console.log('idx: ', idx);
+      this.state.sticker.forEach((val, index) => {
         const month = val.ds.substring(5, 7);
+        // console.log(month);
+        // console.log('index: ', index);
 
         if (arr.month === month) {
           arr.emoji = val.sticker;
@@ -73,8 +81,79 @@ class Month extends Component {
     });
     console.log('realArr', realArr);
 
+    // let name = {happy, angry, good, sad, soso, tired, what};
+    // const url = '/image' + name + '.png';
+
+    const list = [];
+
+    // this.sti_num_arr.forEach((val) => {
+    //   list.push(
+    //     <div className="calendar-item">
+    //       <span className="title">{val}</span>
+    //       <div>
+    //         <img
+    //           id={`month${val}`}
+    //           className="sticker"
+    //           src={`/image/soso.png`}
+    //           alt="이미지 설명"
+    //           title="마우스 오버 시 나오는 설명"
+    //         />
+    //       </div>
+    //     </div>
+    //   );
+    // });
+
+    // this.state.sticker.forEach((arr) => {
+    //   // 출력된 row만큼 돌기
+    //   const month = arr.ds.substring(5, 7);
+    // });
+
+    // this.state.sticker.forEach((arr) => {
+    //   // 출력된 row만큼 돌기
+    //   const month = arr.ds.substring(5, 7);
+
+    //   i_num_arr.forEach((val) => {
+    //     // 12달 돌기
+    //     if (month === val) {
+    //       list.push(
+    //         <div className="calendar-item">
+    //           <span className="title"> {month}</span>
+    //           <div>
+    //             <img
+    //               className="sticker"
+    //               src={`/image/${arr.sticker}.png`}
+    //               alt="이미지 설명"
+    //               title="마우스 오버 시 나오는 설명"
+    //             />
+    //           </div>
+    //         </div>
+    //       );
+    //     } else {
+    //       list.push(
+    //         <div className="calendar-item">
+    //           <span className="title">{val}</span>
+    //           <div>
+    //             <img
+    //               className="sticker"
+    //               src={`/image/soso.png`}
+    //               alt="이미지 설명"
+    //               title="마우스 오버 시 나오는 설명"
+    //             />
+    //           </div>
+    //         </div>
+    //       );
+    //     }
+    //   });
+    //   // if (arr.sticker === 1) {
+    //   //   emoji = angry;
+    //   // } else if (arr.sticker === 2) {
+    //   //   emoji = good;
+    //   // }
+    // });
+
     return (
       <div id="container">
+        {/* <p>여기 monthly!!!!!</p> */}
         <div className="month_box_container first-floor">
           {realArr.map((arr) => {
             return (
@@ -83,7 +162,7 @@ class Month extends Component {
                 <div>
                   <img
                     className="sticker"
-                    src={`/image/${arr.emoji}.png`}
+                    src={`/image/${emoji}.png`}
                     alt="이미지 설명"
                     title="마우스 오버 시 나오는 설명"
                   />

@@ -10,6 +10,7 @@ import {
 import { sizeHeight } from '@material-ui/system';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
+// import "../../assets";
 class Month extends Component {
   static propsTypes = {
     cookies: instanceOf(Cookies).isRequired,
@@ -37,6 +38,7 @@ class Month extends Component {
         { month: '11', emoji: 'soso' },
         { month: '12', emoji: 'soso' },
       ],
+      year: [{2020}, {2021}, {2022}],
     };
   }
 

@@ -143,7 +143,7 @@ class Main extends Component {
     fetch('http://localhost:3003/user/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
+      credentials: 'include'
       body: JSON.stringify({
         user_id: this.state.user_id,
         pwd: this.state.pwd,

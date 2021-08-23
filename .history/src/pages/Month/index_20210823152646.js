@@ -10,6 +10,7 @@ import {
 import { sizeHeight } from '@material-ui/system';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
+// import "../../assets";
 class Month extends Component {
   static propsTypes = {
     cookies: instanceOf(Cookies).isRequired,
@@ -60,6 +61,9 @@ class Month extends Component {
     const { user_id } = this.state;
     console.log('잘 오나...', user_id);
     console.log(this.state.montly);
+
+    // console.log('i_num_arr: ', this.state.i_num_arr);
+    // console.log('sticker: ', this.state.sticker);
 
     const realArr = this.state.i_num_arr.map((arr) => {
       this.state.sticker.forEach((val) => {

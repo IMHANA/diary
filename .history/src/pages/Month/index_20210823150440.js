@@ -10,6 +10,7 @@ import {
 import { sizeHeight } from '@material-ui/system';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
+// import "../../assets";
 class Month extends Component {
   static propsTypes = {
     cookies: instanceOf(Cookies).isRequired,
