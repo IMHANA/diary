@@ -38,7 +38,6 @@ class Month extends Component {
         { month: '12', emoji: 'soso' },
       ],
       year: [],
-      this_year: new Date().getFullYear(),
     };
   }
 
@@ -50,20 +49,17 @@ class Month extends Component {
       .then((response) => response.json())
       .then((data) => this.setState({ year: data }));
 
-    fetch('http://localhost:3003/diary/diary_year/' + this.state.this_year, {
+    fetch('http://localhost:3003/diary/diary_year/2021', {
       method: 'GET',
       credentials: 'include',
     })
       .then((response) => response.json())
       .then((data) => this.setState({ montly: data }));
 
-    fetch(
-      'http://localhost:3003/diary/montly_sticker/' + this.state.this_year,
-      {
-        method: 'GET',
-        credentials: 'include',
-      }
-    )
+    fetch('http://localhost:3003/diary/montly_sticker/2021', {
+      method: 'GET',
+      credentials: 'include',
+    })
       .then((response) => response.json())
       .then((data) => this.setState({ sticker: data }));
   }
@@ -84,21 +80,11 @@ class Month extends Component {
       return arr;
     });
     console.log('realArr', realArr);
-    console.log('어허', this.state.year);
-    const only_year = this.state.year.map((val) => {
-      return String(val.diary_date).substring(2, 4);
-    });
-    const ori_year = this.state.year.map((val) => {
-      return String(val.diary_date).substring(0, 4);
-    });
-    console.log(only_year);
-    const set = Array.from(new Set(only_year));
-    console.log('한개만..', set.sort());
-    // this.setState({
-    //   this_year: new Date().toString,
-    // });
-    const yyy = new Date();
-    console.log('올해 ', yyy.getFullYear());
+
+    const set = new Set(this.state.year);
+    const unique_year = [...set];
+    this.state.year.filter((year, idx) => )
+    console.log('year: ', unique_year);
 
     return (
       <div id="container">
@@ -121,9 +107,9 @@ class Month extends Component {
         </div>
 
         <div id="year_row">
-          {set.map((arr) => {
-            return <span>{arr}</span>;
-          })}
+          <span>20</span>
+          <span>21</span>
+          <span>22</span>
         </div>
       </div>
     );

@@ -50,20 +50,17 @@ class Month extends Component {
       .then((response) => response.json())
       .then((data) => this.setState({ year: data }));
 
-    fetch('http://localhost:3003/diary/diary_year/' + this.state.this_year, {
+    fetch('http://localhost:3003/diary/diary_year/2021', {
       method: 'GET',
       credentials: 'include',
     })
       .then((response) => response.json())
       .then((data) => this.setState({ montly: data }));
 
-    fetch(
-      'http://localhost:3003/diary/montly_sticker/' + this.state.this_year,
-      {
-        method: 'GET',
-        credentials: 'include',
-      }
-    )
+    fetch('http://localhost:3003/diary/montly_sticker/2021', {
+      method: 'GET',
+      credentials: 'include',
+    })
       .then((response) => response.json())
       .then((data) => this.setState({ sticker: data }));
   }
@@ -97,8 +94,7 @@ class Month extends Component {
     // this.setState({
     //   this_year: new Date().toString,
     // });
-    const yyy = new Date();
-    console.log('올해 ', yyy.getFullYear());
+    console.log('올해 ', this.this_year);
 
     return (
       <div id="container">

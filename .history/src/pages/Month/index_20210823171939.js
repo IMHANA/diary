@@ -49,8 +49,11 @@ class Month extends Component {
     })
       .then((response) => response.json())
       .then((data) => this.setState({ year: data }));
-
-    fetch('http://localhost:3003/diary/diary_year/' + this.state.this_year, {
+    console.log('2021: ', new Date().getFullYear());
+    console.log(this.state.this_year);
+    const url =
+      'http://localhost:3003/diary/diary_year/' + this.state.this_year;
+    fetch(url, {
       method: 'GET',
       credentials: 'include',
     })

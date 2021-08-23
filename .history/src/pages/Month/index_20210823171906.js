@@ -49,21 +49,20 @@ class Month extends Component {
     })
       .then((response) => response.json())
       .then((data) => this.setState({ year: data }));
-
-    fetch('http://localhost:3003/diary/diary_year/' + this.state.this_year, {
+    console.log('2021: ', new Date().getFullYear());
+    console.log(this.state.this_year);
+    const url = 'http://localhost:3003/diary/diary_year/' + this.this_year;
+    fetch(url, {
       method: 'GET',
       credentials: 'include',
     })
       .then((response) => response.json())
       .then((data) => this.setState({ montly: data }));
 
-    fetch(
-      'http://localhost:3003/diary/montly_sticker/' + this.state.this_year,
-      {
-        method: 'GET',
-        credentials: 'include',
-      }
-    )
+    fetch('http://localhost:3003/diary/montly_sticker/' + this.this_year, {
+      method: 'GET',
+      credentials: 'include',
+    })
       .then((response) => response.json())
       .then((data) => this.setState({ sticker: data }));
   }

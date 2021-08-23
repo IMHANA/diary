@@ -50,7 +50,7 @@ class Month extends Component {
       .then((response) => response.json())
       .then((data) => this.setState({ year: data }));
 
-    fetch('http://localhost:3003/diary/diary_year/' + this.state.this_year, {
+    fetch('http://localhost:3003/diary/diary_year/' + this.this_year, {
       method: 'GET',
       credentials: 'include',
     })
@@ -58,7 +58,7 @@ class Month extends Component {
       .then((data) => this.setState({ montly: data }));
 
     fetch(
-      'http://localhost:3003/diary/montly_sticker/' + this.state.this_year,
+      'http://localhost:3003/diary/montly_sticker/' + this.this_year.toString(),
       {
         method: 'GET',
         credentials: 'include',
