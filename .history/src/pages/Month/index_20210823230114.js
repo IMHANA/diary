@@ -104,7 +104,7 @@ class Month extends Component {
     //   }
     // });
 
-    console.log('e: ', e);
+    console.log(e);
     const ori_year = this.state.year.map((val) => {
       return String(val.diary_date);
     });

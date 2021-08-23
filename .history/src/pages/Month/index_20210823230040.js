@@ -104,7 +104,7 @@ class Month extends Component {
     //   }
     // });
 
-    console.log('e: ', e);
+    console.log(e);
     const ori_year = this.state.year.map((val) => {
       return String(val.diary_date);
     });
@@ -115,10 +115,10 @@ class Month extends Component {
         this.setState({
           clicked_year: String(ori_arr.substring(2, 4)),
         });
+        console.log('clicked ~~ ', this.state.clicked_year);
       }
       return this.state.clicked_year;
     });
-    console.log('clicked ~~ ', this.state.clicked_year);
     // console.log('ori_year: ', ori_year.substring(2, 4));
     // ori_year.forEach((val) => {
     //   if (e === val.substring(2, 4)) {
