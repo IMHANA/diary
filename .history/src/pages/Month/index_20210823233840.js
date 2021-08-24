@@ -68,39 +68,42 @@ class Month extends Component {
       .then((response) => response.json())
       .then((data) => this.setState({ sticker: data }));
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.year !== prevProps.year ||
-      this.props.this_year !== prevProps.this_year ||
-      this.props.clicked_year !== prevProps.clicked_year ||
-      this.props.montly !== prevProps.montly ||
-      this.props.sticker !== prevProps.sticker ||
-      this.props.i_num_arr !== prevProps.i_num_arr
-    ) {
-      fetch(
-        'http://localhost:3003/diary/diary_year/20' + this.state.clicked_year,
-        {
-          method: 'GET',
-          credentials: 'include',
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => this.setState({ montly: data }));
+  componentDidUpdate() {
+    fetch(
+      'http://localhost:3003/diary/diary_year/20' + this.state.clicked_year,
+      {
+        method: 'GET',
+        credentials: 'include',
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => this.setState({ montly: data }));
 
-      fetch(
-        'http://localhost:3003/diary/montly_sticker/20' +
-          this.state.clicked_year,
-        {
-          method: 'GET',
-          credentials: 'include',
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => this.setState({ sticker: data }));
-    }
+    fetch(
+      'http://localhost:3003/diary/montly_sticker/20' + this.state.clicked_year,
+      {
+        method: 'GET',
+        credentials: 'include',
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => this.setState({ sticker: data }));
   }
 
   changeYear = (e) => {
+    // console.log(e.currentTarget.getAttribute('year_num'));
+    // const ori_year = this.state.year.map((val) => {
+    //   return String(val.diary_date);
+    // });
+    // ori_year.forEach((val) => {
+    //   if (e.target.value === val.substring(2, 4)) {
+    //     this.setState({
+    //       clicked_year: val,
+    //     });
+    //     console.log(val);
+    //   }
+    // });
+
     console.log('e: ', e);
     const ori_year = this.state.year.map((val) => {
       return String(val.diary_date);
@@ -115,7 +118,17 @@ class Month extends Component {
       }
       return this.state.clicked_year;
     });
-    // console.log('clicked ~~ ', this.state.clicked_year);
+    console.log('clicked ~~ ', this.state.clicked_year);
+    // console.log('ori_year: ', ori_year.substring(2, 4));
+    // ori_year.forEach((val) => {
+    //   if (e === val.substring(2, 4)) {
+    //     this.setState({
+    //       clicked_year: val,
+    //     });
+    //     console.log('clicked ~~ ', this.state.clicked_year);
+    //   }
+    // });
+    // console.log(ori_year);
   };
 
   render() {
@@ -152,9 +165,9 @@ class Month extends Component {
     return (
       <div id="container">
         <div className="month_box_container first-floor">
-          {realArr.map((arr, idx) => {
+          {realArr.map((arr) => {
             return (
-              <div key={idx} className="calendar-item">
+              <div key={arr.toString()} className="calendar-item">
                 <span className="title">{arr.month}</span>
                 <div>
                   <img
@@ -170,13 +183,9 @@ class Month extends Component {
         </div>
 
         <div id="year_row">
-          {set.map((arr, idx) => {
+          {set.map((arr) => {
             return (
-              <span
-                key={idx}
-                className="year_num"
-                onClick={() => this.changeYear(arr)}
-              >
+              <span className="year_num" onClick={() => this.changeYear(arr)}>
                 {arr}
               </span>
             );

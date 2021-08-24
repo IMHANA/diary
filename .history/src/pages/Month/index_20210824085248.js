@@ -69,35 +69,26 @@ class Month extends Component {
       .then((data) => this.setState({ sticker: data }));
   }
   componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.year !== prevProps.year ||
-      this.props.this_year !== prevProps.this_year ||
-      this.props.clicked_year !== prevProps.clicked_year ||
-      this.props.montly !== prevProps.montly ||
-      this.props.sticker !== prevProps.sticker ||
-      this.props.i_num_arr !== prevProps.i_num_arr
-    ) {
-      fetch(
-        'http://localhost:3003/diary/diary_year/20' + this.state.clicked_year,
-        {
-          method: 'GET',
-          credentials: 'include',
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => this.setState({ montly: data }));
+    prevState;
+    fetch(
+      'http://localhost:3003/diary/diary_year/20' + this.state.clicked_year,
+      {
+        method: 'GET',
+        credentials: 'include',
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => this.setState({ montly: data }));
 
-      fetch(
-        'http://localhost:3003/diary/montly_sticker/20' +
-          this.state.clicked_year,
-        {
-          method: 'GET',
-          credentials: 'include',
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => this.setState({ sticker: data }));
-    }
+    fetch(
+      'http://localhost:3003/diary/montly_sticker/20' + this.state.clicked_year,
+      {
+        method: 'GET',
+        credentials: 'include',
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => this.setState({ sticker: data }));
   }
 
   changeYear = (e) => {
