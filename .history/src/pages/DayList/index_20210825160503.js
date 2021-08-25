@@ -57,7 +57,7 @@ class DayList extends Component {
 
   goAddDiary = () => {
     this.props.history.push({
-      pathname: `/newDiary`,
+      pathname: `/addDiary`,
     });
   };
 

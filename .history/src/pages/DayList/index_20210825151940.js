@@ -43,22 +43,8 @@ class DayList extends Component {
   //로우 선택하면 해당 일기 상세로 이동
   goDayDetail = (e) => {
     console.log(e);
-    const day_string = String(e.substring(8, 10));
-    console.log('day_string: ', day_string);
-    this.props.history.push({
-      pathname: `/monthly/month/${day_string}`,
-      state: {
-        year: this.state.year,
-        month: this.state.month,
-        date: day_string,
-      },
-    });
-  };
-
-  goAddDiary = () => {
-    this.props.history.push({
-      pathname: `/newDiary`,
-    });
+    // const day_string = String(e.substring(8, 11));
+    // console.log('day_string: ', day_string);
   };
 
   render() {
@@ -78,20 +64,14 @@ class DayList extends Component {
               <span id="month_sub">월의 일기 {this.state.diary.length}개</span>
             </div>
             <div className="list-con2">
-              <span>
-                <TextField
-                  id="standard-secondary"
-                  label="일기찾기"
-                  color="secondary"
-                  style={{ width: '80px' }}
-                />
-              </span>
-              <span onClick={this.goAddDiary}>
-                <Add style={{ fontSize: '45px' }} />
-              </span>
-              <span>
-                <ArrowBack style={{ fontSize: '45px' }} />
-              </span>
+              <TextField
+                id="standard-secondary"
+                label="일기찾기"
+                color="secondary"
+                style={{ width: '80px' }}
+              />
+              <Add style={{ fontSize: '45px' }} />
+              <ArrowBack style={{ fontSize: '45px' }} />
             </div>
           </div>
           <div>
@@ -100,7 +80,7 @@ class DayList extends Component {
                 return (
                   <div
                     className={`${arr.diary_date} date_box`}
-                    onClick={() => this.goDayDetail(arr.diary_date)}
+                    onClick={() => this.goDayDetail(arr.month)}
                   >
                     <span className="date">
                       <Minimize /> {String(arr.diary_date).substring(5, 10)}

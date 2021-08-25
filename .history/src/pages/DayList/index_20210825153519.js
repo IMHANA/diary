@@ -55,12 +55,6 @@ class DayList extends Component {
     });
   };
 
-  goAddDiary = () => {
-    this.props.history.push({
-      pathname: `/newDiary`,
-    });
-  };
-
   render() {
     console.log(this.state.diary);
     return (
@@ -78,20 +72,14 @@ class DayList extends Component {
               <span id="month_sub">월의 일기 {this.state.diary.length}개</span>
             </div>
             <div className="list-con2">
-              <span>
-                <TextField
-                  id="standard-secondary"
-                  label="일기찾기"
-                  color="secondary"
-                  style={{ width: '80px' }}
-                />
-              </span>
-              <span onClick={this.goAddDiary}>
-                <Add style={{ fontSize: '45px' }} />
-              </span>
-              <span>
-                <ArrowBack style={{ fontSize: '45px' }} />
-              </span>
+              <TextField
+                id="standard-secondary"
+                label="일기찾기"
+                color="secondary"
+                style={{ width: '80px' }}
+              />
+              <Add style={{ fontSize: '45px' }} />
+              <ArrowBack style={{ fontSize: '45px' }} />
             </div>
           </div>
           <div>

@@ -55,12 +55,6 @@ class DayList extends Component {
     });
   };
 
-  goAddDiary = () => {
-    this.props.history.push({
-      pathname: `/newDiary`,
-    });
-  };
-
   render() {
     console.log(this.state.diary);
     return (
@@ -86,7 +80,7 @@ class DayList extends Component {
                   style={{ width: '80px' }}
                 />
               </span>
-              <span onClick={this.goAddDiary}>
+              <span>
                 <Add style={{ fontSize: '45px' }} />
               </span>
               <span>

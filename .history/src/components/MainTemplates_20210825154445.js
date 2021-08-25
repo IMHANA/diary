@@ -13,7 +13,7 @@ export default class MainTemplates extends Component {
           <Route path="/monthly" component={Month} />
           {/* <Route path="/list" component={DayList} /> */}
           <Route path="/tagList" component={AddTag} />
-          <Route path="/newDiary" component={NewDay} />
+          {/* <Route path="/newDay" component={NewDay} /> */}
         </Switch>
       </Router>
     );

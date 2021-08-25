@@ -45,7 +45,7 @@
 
 #month {
   color: darkorange;
-  font-size: 60px;
+  font-size: 50px;
   text-align: center;
   /* margin-left: 400px; */
   position: absolute;
@@ -75,7 +75,7 @@
 
 .date_box {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
 .listicon {
@@ -102,7 +102,7 @@
 }
 
 .list_sticker {
-  padding: 10px 25px;
+  padding: 5px 20px 0px 20px;
   width: 50px;
   height: 50px;
 }

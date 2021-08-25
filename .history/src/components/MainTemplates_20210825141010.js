@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Main, Month, DayList, AddTag, NewDay, DayDetail } from '../pages';
+import { Main, Month, DayList, AddTag, NewDay } from '../pages';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default class MainTemplates extends Component {
@@ -13,7 +13,7 @@ export default class MainTemplates extends Component {
           <Route path="/monthly" component={Month} />
           {/* <Route path="/list" component={DayList} /> */}
           <Route path="/tagList" component={AddTag} />
-          <Route path="/newDiary" component={NewDay} />
+          {/* <Route path="/newDay" component={NewDay} /> */}
         </Switch>
       </Router>
     );
