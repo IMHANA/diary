@@ -22,11 +22,7 @@ class AddTag extends Component {
     };
   }
 
-  goCancle = () => {
-    this.props.history.goBack();
-  };
-
-  goAddDiary = () => {};
+  goCancle = () => {};
 
   render() {
     let today = new Date();
@@ -107,9 +103,7 @@ class AddTag extends Component {
           <span id="cancle_btn" onClick={this.goCancle}>
             취소
           </span>
-          <span id="next_btn" onClick={this.goAddDiary}>
-            다음
-          </span>
+          <span id="next_btn">다음</span>
         </div>
       </div>
     );

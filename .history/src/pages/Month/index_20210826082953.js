@@ -98,7 +98,6 @@ class Month extends Component {
     }
   }
 
-  // 년도를 선택하면 해당하는 년도에 맞는 스티커값을 보여주기 위해서 setStatus.
   changeYear = (e) => {
     console.log('e: ', e);
     const ori_year = this.state.year.map((val) => {
@@ -139,7 +138,7 @@ class Month extends Component {
 
   render() {
     // console.log('11111   ', this.state.sticker);
-    // 초기값인 realArr의 배열을 돌면서 DB에서 가져온 sticker의 값이 있으면 덮어씌운다.
+    //
     const realArr = this.state.i_num_arr.map((arr) => {
       this.state.sticker.forEach((val) => {
         let month = val.ds.substring(5, 7);
@@ -150,8 +149,6 @@ class Month extends Component {
       return arr;
     });
 
-    // DB에 저장되어 있는 일기들을 전부 가져와서 년도만 떼고
-    // set으로 중복제거한 후 sort르 정렬해서 년도를 보여준다.
     const only_year = this.state.year.map((val) => {
       return String(val.diary_date).substring(2, 4);
     });
@@ -163,6 +160,8 @@ class Month extends Component {
       <div id="container">
         <div className="month_box_container first-floor">
           {realArr.map((arr, idx) => {
+            // const month_num = arr.month;
+            // console.log('arr.month', arr.month);
             return (
               <div key={idx} className="calendar-item">
                 <span className={`${arr.month} title`} onClick={this.goDayList}>

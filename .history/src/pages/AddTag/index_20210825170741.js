@@ -26,8 +26,6 @@ class AddTag extends Component {
     this.props.history.goBack();
   };
 
-  goAddDiary = () => {};
-
   render() {
     let today = new Date();
     let year = String(today.getFullYear());
@@ -107,9 +105,7 @@ class AddTag extends Component {
           <span id="cancle_btn" onClick={this.goCancle}>
             취소
           </span>
-          <span id="next_btn" onClick={this.goAddDiary}>
-            다음
-          </span>
+          <span id="next_btn">다음</span>
         </div>
       </div>
     );

@@ -8,7 +8,6 @@ import { Delete, SaveAlt } from '@material-ui/icons';
 import { SketchField, Tools } from '../../components/customSketchField';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
-import DayDetail from '../DayDetail';
 // import { SketchPicker } from 'react-color';
 
 const writeBoard = memo(() => {
@@ -23,19 +22,11 @@ class NewDay extends Component {
     cookies: instanceOf(Cookies).isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    const { cookies } = props;
-    this.state = {
-      backgroundColor: '#fff',
-      lineColor: 'black',
-      lineWidth: 3,
-      today: new Date(),
-    };
-  }
-
-  componentDidMount() {}
+  state = {
+    backgroundColor: '#fff',
+    lineColor: 'black',
+    lineWidth: 3,
+  };
 
   // handleChangeComplete = (color) => {
   //   this.setState({ background: color.hex });

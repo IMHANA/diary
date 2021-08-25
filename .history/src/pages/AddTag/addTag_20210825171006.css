@@ -68,7 +68,6 @@ input:hover {
 }
 .addlist_sticker:hover {
   /* transform: scale(1.3); */
-  /* transform: rotate(1turn) scale(1.7); */
-  transform: scale(1.7);
+  transform: rotate(1turn) scale(1.5);
   transition-duration: 350ms;
 }

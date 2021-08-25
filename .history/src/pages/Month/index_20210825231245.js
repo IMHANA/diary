@@ -16,18 +16,18 @@ class Month extends Component {
       montly: '',
       sticker: [],
       i_num_arr: [
-        { month: '01', emoji: 'nothing' },
-        { month: '02', emoji: 'nothing' },
-        { month: '03', emoji: 'nothing' },
-        { month: '04', emoji: 'nothing' },
-        { month: '05', emoji: 'nothing' },
-        { month: '06', emoji: 'nothing' },
-        { month: '07', emoji: 'nothing' },
-        { month: '08', emoji: 'nothing' },
-        { month: '09', emoji: 'nothing' },
-        { month: '10', emoji: 'nothing' },
-        { month: '11', emoji: 'nothing' },
-        { month: '12', emoji: 'nothing' },
+        { month: '01', emoji: 'soso' },
+        { month: '02', emoji: 'soso' },
+        { month: '03', emoji: 'soso' },
+        { month: '04', emoji: 'soso' },
+        { month: '05', emoji: 'soso' },
+        { month: '06', emoji: 'soso' },
+        { month: '07', emoji: 'soso' },
+        { month: '08', emoji: 'soso' },
+        { month: '09', emoji: 'soso' },
+        { month: '10', emoji: 'soso' },
+        { month: '11', emoji: 'soso' },
+        { month: '12', emoji: 'soso' },
       ],
       year: [],
       this_year: new Date().getFullYear(),
@@ -98,7 +98,6 @@ class Month extends Component {
     }
   }
 
-  // 년도를 선택하면 해당하는 년도에 맞는 스티커값을 보여주기 위해서 setStatus.
   changeYear = (e) => {
     console.log('e: ', e);
     const ori_year = this.state.year.map((val) => {
@@ -139,10 +138,10 @@ class Month extends Component {
 
   render() {
     // console.log('11111   ', this.state.sticker);
-    // 초기값인 realArr의 배열을 돌면서 DB에서 가져온 sticker의 값이 있으면 덮어씌운다.
     const realArr = this.state.i_num_arr.map((arr) => {
       this.state.sticker.forEach((val) => {
         let month = val.ds.substring(5, 7);
+
         if (arr.month === month) {
           arr.emoji = val.sticker;
         }
@@ -150,8 +149,6 @@ class Month extends Component {
       return arr;
     });
 
-    // DB에 저장되어 있는 일기들을 전부 가져와서 년도만 떼고
-    // set으로 중복제거한 후 sort르 정렬해서 년도를 보여준다.
     const only_year = this.state.year.map((val) => {
       return String(val.diary_date).substring(2, 4);
     });
@@ -163,6 +160,8 @@ class Month extends Component {
       <div id="container">
         <div className="month_box_container first-floor">
           {realArr.map((arr, idx) => {
+            // const month_num = arr.month;
+            // console.log('arr.month', arr.month);
             return (
               <div key={idx} className="calendar-item">
                 <span className={`${arr.month} title`} onClick={this.goDayList}>

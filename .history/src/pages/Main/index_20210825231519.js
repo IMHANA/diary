@@ -161,7 +161,7 @@ class Main extends Component {
           // setCookie('user_id', this.state.user_id, { path: '/' });
         }
       })
-      .catch((e) => alert('아이디와 비밀번호를 다시 입력해주세요.'));
+      .catch((e) => alert('안돼 돌아가'));
 
     this.setState({
       user_id: '',

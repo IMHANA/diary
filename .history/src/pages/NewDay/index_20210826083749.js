@@ -6,9 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { Delete, SaveAlt } from '@material-ui/icons';
 // import CanvasDraw from "react-canvas-draw";
 import { SketchField, Tools } from '../../components/customSketchField';
-import { withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
-import DayDetail from '../DayDetail';
+import { withCookies } from 'react-cookie';
 // import { SketchPicker } from 'react-color';
 
 const writeBoard = memo(() => {
@@ -19,23 +17,11 @@ const writeBoard = memo(() => {
   );
 });
 class NewDay extends Component {
-  static propsTypes = {
-    cookies: instanceOf(Cookies).isRequired,
+  state = {
+    backgroundColor: '#fff',
+    lineColor: 'black',
+    lineWidth: 3,
   };
-
-  constructor(props) {
-    super(props);
-
-    const { cookies } = props;
-    this.state = {
-      backgroundColor: '#fff',
-      lineColor: 'black',
-      lineWidth: 3,
-      today: new Date(),
-    };
-  }
-
-  componentDidMount() {}
 
   // handleChangeComplete = (color) => {
   //   this.setState({ background: color.hex });
