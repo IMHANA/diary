@@ -17,7 +17,6 @@ class DayList extends Component {
     this.state = {
       month: '',
       year: '',
-      d_count: '',
     };
   }
 
@@ -30,7 +29,8 @@ class DayList extends Component {
       year: year,
     });
     console.log('mon_year: ', mon_year);
-    fetch('http://localhost:3003/diary/diary_month/' + mon_year, {
+    console.log('state: ', this.state.year, this.state.month);
+    fetch('http://localhost:3003/user/diary_month/' + mon_year, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

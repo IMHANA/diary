@@ -130,8 +130,8 @@ class Month extends Component {
     this.props.history.push({
       pathname: `/monthly/${mon_year}`,
       state: {
-        year: year_string,
-        month: mon_string,
+        year: this.state.clicked_year,
+        month: this.state.clicked_month,
       },
     });
   };

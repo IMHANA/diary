@@ -32,7 +32,7 @@ class Month extends Component {
       year: [],
       this_year: new Date().getFullYear(),
       clicked_year: '',
-      clicked_month: '',
+      clicked_year: '',
     };
   }
 
@@ -125,13 +125,11 @@ class Month extends Component {
       ? '20' + String(this.state.clicked_year)
       : String(this.state.this_year);
     const mon_year = year_string + mon_string;
-    this.setState({ clicked_month: mon_string });
     // console.log(mon_year);
     this.props.history.push({
       pathname: `/monthly/${mon_year}`,
       state: {
-        year: year_string,
-        month: mon_string,
+        year: this.state.clicked_year,
       },
     });
   };

@@ -15,22 +15,14 @@ class DayList extends Component {
 
     const { cookies } = props;
     this.state = {
-      month: '',
       year: '',
-      d_count: '',
+      month: '',
     };
   }
 
   componentDidMount() {
-    const month = this.props.location.state.month;
-    const year = this.props.location.state.year;
-    const mon_year = year + month;
-    this.setState({
-      month: month,
-      year: year,
-    });
-    console.log('mon_year: ', mon_year);
-    fetch('http://localhost:3003/diary/diary_month/' + mon_year, {
+    const mon_year = this.state.year + this.state.month;
+    fetch('http://localhost:3003/user/diary_month/' + mon_year, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

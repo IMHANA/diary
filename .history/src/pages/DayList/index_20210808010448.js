@@ -2,47 +2,8 @@ import React, { Component } from 'react';
 import { Add, ArrowBack, Flag, ExpandMore, Minimize } from '@material-ui/icons';
 import TextField from '@material-ui/core/TextField';
 import './dayList.css';
-import { withCookies, Cookies } from 'react-cookie';
-import { instanceOf } from 'prop-types';
 
-class DayList extends Component {
-  static propsTypes = {
-    cookies: instanceOf(Cookies).isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-
-    const { cookies } = props;
-    this.state = {
-      month: '',
-      year: '',
-      d_count: '',
-    };
-  }
-
-  componentDidMount() {
-    const month = this.props.location.state.month;
-    const year = this.props.location.state.year;
-    const mon_year = year + month;
-    this.setState({
-      month: month,
-      year: year,
-    });
-    console.log('mon_year: ', mon_year);
-    fetch('http://localhost:3003/diary/diary_month/' + mon_year, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        if (json) {
-          alert('okok');
-        }
-      });
-  }
-
+export default class DayList extends Component {
   render() {
     return (
       <div id="container">
@@ -55,7 +16,7 @@ class DayList extends Component {
                     </div> */}
           <div id="list_title">
             <div className="list-con">
-              <span id="month">{this.state.month}</span>
+              <span id="month">08</span>
               <span id="month_sub">월의 일기 8개</span>
             </div>
             <div className="list-con2">
@@ -143,5 +104,3 @@ class DayList extends Component {
     );
   }
 }
-
-export default withCookies(DayList);
