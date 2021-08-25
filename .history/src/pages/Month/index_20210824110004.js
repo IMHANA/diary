@@ -65,7 +65,13 @@ class Month extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.clicked_year !== prevState.clicked_year) {
+    if (
+      // this.state.year !== prevState.year ||
+      this.state.clicked_year !== prevState.clicked_year
+      // this.state.montly !== prevState.montly ||
+      // this.state.sticker !== prevState.sticker
+      // this.state.i_num_arr !== prevState.i_num_arr
+    ) {
       fetch(
         'http://localhost:3003/diary/montly_sticker/20' +
           this.state.clicked_year,
@@ -94,6 +100,26 @@ class Month extends Component {
             ],
           })
         );
+
+      // fetch('http://localhost:3003/diary/list', {
+      //   method: 'GET',
+      //   credentials: 'include',
+      // })
+      //   .then((response) => response.json())
+      //   .then((data) => this.setState({ year: data }));
+
+      // if (this.state.year !== prevState.year) {
+      //   fetch(
+      //     'http://localhost:3003/diary/montly_sticker/20' +
+      //       this.state.clicked_year,
+      //     {
+      //       method: 'GET',
+      //       credentials: 'include',
+      //     }
+      //   )
+      //     .then((response) => response.json())
+      //     .then((data) => this.setState({ sticker: data }));
+      // }
     }
   }
 
@@ -117,37 +143,7 @@ class Month extends Component {
     });
   };
 
-  // 스티커나 숫자 누르면 해당 월의 일기목록으로 이동
-  goDayList = (e) => {
-    const mon_string = String(e.target.className.substring(0, 2));
-    const year_string = String(this.state.clicked_year)
-      ? '20' + String(this.state.clicked_year)
-      : String(this.state.this_year);
-    const mon_year = year_string + mon_string;
-    // console.log(mon_year);
-    this.props.history.push(`/monthly/${mon_year}`);
-    // console.log(
-    //   this.state.clicked_year
-    //     ? '20' + this.state.clicked_year
-    //     : this.state.this_year
-    // );
-
-    // fetch('http://localhost:3003/user/diary_month/' + mon_year, {
-    //   method: 'GET',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   credentials: 'include',
-    // })
-    //   .then((response) => response.json())
-    //   .then((json) => {
-    //     if (json) {
-    //       alert('okok');
-    //       this.props.history.push('/monthly/:month');
-    //     }
-    //   });
-  };
-
   render() {
-    // console.log('11111   ', this.state.sticker);
     const realArr = this.state.i_num_arr.map((arr) => {
       this.state.sticker.forEach((val) => {
         let month = val.ds.substring(5, 7);
@@ -170,20 +166,15 @@ class Month extends Component {
       <div id="container">
         <div className="month_box_container first-floor">
           {realArr.map((arr, idx) => {
-            // const month_num = arr.month;
-            // console.log('arr.month', arr.month);
             return (
               <div key={idx} className="calendar-item">
-                <span className={`${arr.month} title`} onClick={this.goDayList}>
-                  {arr.month}
-                </span>
+                <span className="title">{arr.month}</span>
                 <div>
                   <img
-                    className={`${arr.month} sticker`}
+                    className="sticker"
                     src={`/image/${arr.emoji}.png`}
                     alt="이미지 설명"
                     title="마우스 오버 시 나오는 설명"
-                    onClick={this.goDayList}
                   />
                 </div>
               </div>

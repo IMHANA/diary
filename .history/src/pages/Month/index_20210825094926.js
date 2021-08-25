@@ -119,31 +119,35 @@ class Month extends Component {
 
   // 스티커나 숫자 누르면 해당 월의 일기목록으로 이동
   goDayList = (e) => {
-    const mon_string = String(e.target.className.substring(0, 2));
-    const year_string = String(this.state.clicked_year)
-      ? '20' + String(this.state.clicked_year)
-      : String(this.state.this_year);
-    const mon_year = year_string + mon_string;
-    // console.log(mon_year);
-    this.props.history.push(`/monthly/${mon_year}`);
+    let mon_string = e.target.className.substring(0, 2);
+    // console.log(mon_string);
+    // console.log(this.state.clicked_year);
+    const year_string = this.state.clicked_year
+      ? '20' + this.state.clicked_year
+      : this.state.this_year;
+    console.log(year_string, mon_string);
     // console.log(
     //   this.state.clicked_year
     //     ? '20' + this.state.clicked_year
     //     : this.state.this_year
     // );
 
-    // fetch('http://localhost:3003/user/diary_month/' + mon_year, {
-    //   method: 'GET',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   credentials: 'include',
-    // })
-    //   .then((response) => response.json())
-    //   .then((json) => {
-    //     if (json) {
-    //       alert('okok');
-    //       this.props.history.push('/monthly/:month');
-    //     }
-    //   });
+    fetch(
+      'http://localhost:3003/user/diary_month/' +
+      year_string + mon_string
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      }
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        if (json) {
+          alert('okok');
+          this.props.history.push('/monthly/:month');
+        }
+      });
   };
 
   render() {

@@ -123,27 +123,26 @@ class Month extends Component {
     const year_string = String(this.state.clicked_year)
       ? '20' + String(this.state.clicked_year)
       : String(this.state.this_year);
-    const mon_year = year_string + mon_string;
-    // console.log(mon_year);
-    this.props.history.push(`/monthly/${mon_year}`);
+    const mon_year = mon_string + year_string;
+    console.log(mon_year);
     // console.log(
     //   this.state.clicked_year
     //     ? '20' + this.state.clicked_year
     //     : this.state.this_year
     // );
 
-    // fetch('http://localhost:3003/user/diary_month/' + mon_year, {
-    //   method: 'GET',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   credentials: 'include',
-    // })
-    //   .then((response) => response.json())
-    //   .then((json) => {
-    //     if (json) {
-    //       alert('okok');
-    //       this.props.history.push('/monthly/:month');
-    //     }
-    //   });
+    fetch('http://localhost:3003/user/diary_month/' + mon_year, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json) {
+          alert('okok');
+          this.props.history.push('/monthly/:month');
+        }
+      });
   };
 
   render() {

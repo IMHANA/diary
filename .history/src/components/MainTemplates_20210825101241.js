@@ -9,7 +9,7 @@ export default class MainTemplates extends Component {
         <Switch>
           <Route exact path="/" component={Main} />
           {/* <Route path="/monthly/month/:day" component={AddTag} /> */}
-          <Route path="/monthly/:month" component={DayList} />
+          <Route path="/monthly/:month" component={Main} />
           <Route path="/monthly" component={Month} />
           {/* <Route path="/list" component={DayList} /> */}
           <Route path="/tagList" component={AddTag} />
