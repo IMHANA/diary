@@ -97,7 +97,8 @@
 }
 
 .list_sticker {
-  padding: 5px 20px 0px 20px;
+  margin-top: 20px;
+  padding-top: 20px;
   width: 50px;
   height: 50px;
 }

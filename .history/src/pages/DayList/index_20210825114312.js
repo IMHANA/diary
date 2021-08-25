@@ -55,7 +55,7 @@ class DayList extends Component {
           <div id="list_title">
             <div className="list-con">
               <span id="month">{this.state.month}</span>
-              <span id="month_sub">월의 일기 {this.state.diary.length}개</span>
+              <span id="month_sub">월의 일기 8개</span>
             </div>
             <div className="list-con2">
               <TextField
@@ -74,25 +74,21 @@ class DayList extends Component {
                 return (
                   <>
                     <span className="date">
-                      <Minimize /> {String(arr.diary_date).substring(5, 10)}
+                      <Minimize /> {arr.diary_date}
                     </span>
-                    <img
-                      className="list_sticker"
-                      src={`/image/${arr.sticker}.png`}
-                      alt="말랭이"
-                    />
-                    <span className="list_box_span">{arr.title_list}</span>
-                    <br></br>
+                    <img src={`/image/${arr.sticker}.png`} alt="말랭이" />
+
+                    <span className="list_box_span">${arr.title_list}</span>
                   </>
                 );
               })}
-              {/* <span className="date">
+              <span className="date">
                 <Minimize /> 0803
               </span>
               <Flag className="listicon" />
               <span className="list_box_span">
                 #첫번째 #두번째 #세번째 #네번째 #다섯번째 #여섯번째
-              </span> */}
+              </span>
             </div>
             {/* <div className="list_box">
               <span className="date">

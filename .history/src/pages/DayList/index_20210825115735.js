@@ -55,7 +55,7 @@ class DayList extends Component {
           <div id="list_title">
             <div className="list-con">
               <span id="month">{this.state.month}</span>
-              <span id="month_sub">월의 일기 {this.state.diary.length}개</span>
+              <span id="month_sub">월의 일기 8개</span>
             </div>
             <div className="list-con2">
               <TextField
