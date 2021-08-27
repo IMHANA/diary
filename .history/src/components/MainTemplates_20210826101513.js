@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Main, Month, DayList, AddTag, NewDay } from '../pages';
-import AddNewDiary from '../pages/AddNewDiary';
+import { Main, Month, DayList, AddTag, NewDay, DayDetail } from '../pages';
+import AddNewDiary from '../pages/addNewDiary';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default class MainTemplates extends Component {

@@ -24,6 +24,7 @@ class AddTag extends Component {
       addTagList: [], //계속 인풋창 생성
       test: '',
     };
+    console.log(this.props.tag_list);
   }
 
   componentDidUpdate(prevState) {}

@@ -24,6 +24,7 @@ class AddTag extends Component {
       addTagList: [], //계속 인풋창 생성
       test: '',
     };
+    console.log(this.props.tag_list);
   }
 
   componentDidUpdate(prevState) {}
@@ -56,7 +57,6 @@ class AddTag extends Component {
         tag: '',
       },
     ];
-
     this.setState({
       addTagList: newAddTagList,
     });
@@ -67,9 +67,7 @@ class AddTag extends Component {
    * @param {*} e 타이핑 이벤트 객체
    * @param {*} index input 컴포넌트 배열 인덱스
    */
-  handleChangeInput = (e, index) => {
-    console.log(`${index} event: `, e.target.value);
-  };
+  handleChangeInput = (e, index) => {};
 
   stickerNum = (e) => {
     this.setState({
@@ -92,17 +90,10 @@ class AddTag extends Component {
   };
 
   render() {
-    const { addTagList } = this.state;
-    const addTagListElements = addTagList.map((tag, index) => {
-      return (
-        <AddTagButton
-          key={`${index}-${tag}`}
-          index={index}
-          handleChangeInput={this.handleChangeInput}
-        />
-      );
+    const { tagList } = this.state;
+    const inputList = tagList.map((tag) => {
+      return <AddTagButton />;
     });
-
     let today = new Date();
     let year = String(today.getFullYear());
     let month = String(today.getMonth() + 1);
@@ -119,6 +110,7 @@ class AddTag extends Component {
     const style = {
       display: 'inline-block',
     };
+    console.log('tag_list:', this.state.tag_list);
 
     return (
       <div id="container">
@@ -126,9 +118,13 @@ class AddTag extends Component {
         <div className="inputBox" style={style}>
           <div>
             {/* <AddTagButton /> */}
-            <button onClick={this.handleAddInput}>제목태그 추가</button>
+            <button onClick={(e) => this.addTagList(e)}>제목태그 추가</button>
           </div>
-          <div>{addTagListElements}</div>
+          <div>
+            {this.state.addTagList.map((item, idx) => {
+              return <span key={idx}>{item}</span>;
+            })}
+          </div>
         </div>
         <div>
           <img

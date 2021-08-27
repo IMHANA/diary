@@ -21,12 +21,10 @@ class AddTag extends Component {
       tag_list: this.props.tag_list,
       clicked_sticker: this.props.clicked_sticker,
       isTag: this.props.isAddTad,
-      addTagList: [], //계속 인풋창 생성
-      test: '',
+      addTagList: [],
     };
+    console.log(this.props.tag_list);
   }
-
-  componentDidUpdate(prevState) {}
 
   goCancle = () => {
     this.props.history.goBack();
@@ -41,68 +39,16 @@ class AddTag extends Component {
       isTag: false,
     });
     // this.props.setTagState(this.state);
-
-    //모든 인풋창 돌면서 []에 input의 value를 전부 push하고싶다 !!!!!
   };
 
-  /**
-   * @title 버튼 추가 처리 함수
-   */
-  handleAddInput = () => {
-    const { addTagList } = this.state;
-    const newAddTagList = [
-      ...addTagList,
-      {
-        tag: '',
-      },
-    ];
-
+  addTagList = (e) => {
+    const addNewTag = [...this.state.addTagList, <AddTagButton />];
     this.setState({
-      addTagList: newAddTagList,
+      addTagList: addNewTag,
     });
-  };
-
-  /**
-   * 자식 컴포넌트인 input에서 값을 입력했을 때 처리하는 함수
-   * @param {*} e 타이핑 이벤트 객체
-   * @param {*} index input 컴포넌트 배열 인덱스
-   */
-  handleChangeInput = (e, index) => {
-    console.log(`${index} event: `, e.target.value);
-  };
-
-  stickerNum = (e) => {
-    this.setState({
-      clicked_sticker: e.target.value,
-    });
-    console.log(this.state.clicked_sticker);
-  };
-
-  test = (e) => {
-    this.setState({
-      test: e.target.value,
-    });
-    console.log('test:', this.state.test);
-
-    // setTimeout(() => {
-    //   this.setState((prevState) => ({
-    //     tag_list: [...prevState.tag_list, test],
-    //   }));
-    // }, 2000);
   };
 
   render() {
-    const { addTagList } = this.state;
-    const addTagListElements = addTagList.map((tag, index) => {
-      return (
-        <AddTagButton
-          key={`${index}-${tag}`}
-          index={index}
-          handleChangeInput={this.handleChangeInput}
-        />
-      );
-    });
-
     let today = new Date();
     let year = String(today.getFullYear());
     let month = String(today.getMonth() + 1);
@@ -119,16 +65,30 @@ class AddTag extends Component {
     const style = {
       display: 'inline-block',
     };
+    const style2 = {
+      display: 'inline',
+    };
 
     return (
       <div id="container">
         <div id="write_date">{full_day}</div>
-        <div className="inputBox" style={style}>
+        <div className="inputBox" style={style2}>
           <div>
-            {/* <AddTagButton /> */}
-            <button onClick={this.handleAddInput}>제목태그 추가</button>
+            <AddTagButton />
+            <button onClick={(e) => this.addTagList(e)} style={style2}>
+              추가
+            </button>
           </div>
-          <div>{addTagListElements}</div>
+          <div>
+            {this.state.addTagList.map((item) => {
+              return item;
+            })}
+          </div>
+          {/* <Input placeholder="#" inputProps={{ 'aria-label': 'description' }} />
+          <Input placeholder="#" inputProps={{ 'aria-label': 'description' }} />
+          <Input placeholder="#" inputProps={{ 'aria-label': 'description' }} />
+          <Input placeholder="#" inputProps={{ 'aria-label': 'description' }} />
+          <Input placeholder="#" inputProps={{ 'aria-label': 'description' }} /> */}
         </div>
         <div>
           <img
@@ -136,7 +96,6 @@ class AddTag extends Component {
             src="/image/angry.png"
             alt="분노의말랭이"
             value="1"
-            onClick={this.stickerNum}
           />
           <img
             className="addlist_sticker"

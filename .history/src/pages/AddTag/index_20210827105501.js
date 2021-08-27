@@ -24,6 +24,7 @@ class AddTag extends Component {
       addTagList: [], //계속 인풋창 생성
       test: '',
     };
+    console.log(this.props.tag_list);
   }
 
   componentDidUpdate(prevState) {}
@@ -67,9 +68,7 @@ class AddTag extends Component {
    * @param {*} e 타이핑 이벤트 객체
    * @param {*} index input 컴포넌트 배열 인덱스
    */
-  handleChangeInput = (e, index) => {
-    console.log(`${index} event: `, e.target.value);
-  };
+  handleChangeInput = (e, index) => {};
 
   stickerNum = (e) => {
     this.setState({

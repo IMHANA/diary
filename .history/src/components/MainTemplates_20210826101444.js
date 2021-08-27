@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Main, Month, DayList, AddTag, NewDay } from '../pages';
-import AddNewDiary from '../pages/AddNewDiary';
+import { Main, Month, DayList, AddTag, NewDay, DayDetail } from '../pages';
+import addNewDiary from '../pages/addNewDiary';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default class MainTemplates extends Component {
@@ -15,7 +15,7 @@ export default class MainTemplates extends Component {
           {/* <Route path="/list" component={DayList} /> */}
           <Route path="/addTag" component={AddTag} />
           <Route path="/newDiary" component={NewDay} />
-          <Route path="/addNewDiary" component={AddNewDiary} />
+          <Route path="/addNewDiary" component={addNewDiary} />
         </Switch>
       </Router>
     );
