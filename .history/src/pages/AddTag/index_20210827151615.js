@@ -130,7 +130,7 @@ class AddTag extends Component {
     };
 
     return (
-      <>
+      <div id="container">
         <div id="write_date">{full_day}</div>
         <div className="inputBox" style={style}>
           <div>
@@ -192,7 +192,7 @@ class AddTag extends Component {
             다음
           </span>
         </div>
-      </>
+      </div>
     );
   }
 }

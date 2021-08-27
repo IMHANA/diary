@@ -22,7 +22,7 @@ class AddNewDiary extends Component {
       backgroundColor: '',
       lineWidth: 0,
       today: new Date(),
-      isAddTag: true,
+      isAddTag: false,
       // tagData: [],
       // diaryData: [],
     };
