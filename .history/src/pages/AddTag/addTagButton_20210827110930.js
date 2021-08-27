@@ -3,12 +3,10 @@ import Input from '@material-ui/core/Input';
 
 export default class AddTagButton extends Component {
   constructor(props) {
-    super(props);
-    this.textInput = React.createRef();
-    this.focusTextInput = this.focusTextInput.bind(this);
+    this.inputRef = React.createRef();
   }
   focusTextInput = () => {
-    this.textInput.current.focus();
+    this.inputRef.current.focus();
   };
 
   render() {
@@ -17,7 +15,7 @@ export default class AddTagButton extends Component {
       <>
         <Input
           type="text"
-          ref={this.textInput}
+          ref={this.inputRef}
           placeholder="#"
           inputProps={{ 'aria-label': 'description' }}
           onChange={(e) => {

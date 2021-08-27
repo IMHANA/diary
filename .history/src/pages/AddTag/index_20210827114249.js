@@ -27,10 +27,10 @@ class AddTag extends Component {
       test: '',
     };
   }
-  // componentDidMount() {
-  //   console.log(this.textRef.current.state);
-  //   this.textRef.current.focusTextInput();
-  // }
+  componentDidMount() {
+    console.log(this.textRef.current.state);
+    this.textRef.current.focusTextInput();
+  }
 
   goCancle = () => {
     this.props.history.goBack();
