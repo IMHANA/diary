@@ -35,7 +35,7 @@ class AddTag extends Component {
     this.props.onSubmit({
       tag: this.state.addTagList,
       sticker: this.state.clicked_sticker,
-      isTag: true,
+      isTag: false,
     });
   };
 

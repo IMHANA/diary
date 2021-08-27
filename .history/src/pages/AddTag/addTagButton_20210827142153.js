@@ -5,7 +5,7 @@ export default class AddTagButton extends Component {
   handleChange = (e) => {
     const { onChangeTagButton } = this.props;
     const value = e.target.value;
-    this.props.handleChangeTagButton(value);
+    onChangeTagButton(value);
   };
 
   render() {
@@ -20,7 +20,7 @@ export default class AddTagButton extends Component {
           placeholder="#"
           inputProps={{ 'aria-label': 'description' }}
           onChange={this.handleChange}
-          value={tag}
+          name="inputs"
         />
         <br></br>
       </>

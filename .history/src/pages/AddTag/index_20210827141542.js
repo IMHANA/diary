@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './addTag.css';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { ChildCare, DirectionsBoat, Title } from '@material-ui/icons';
+import { ChildCare, DirectionsBoat } from '@material-ui/icons';
 import Input from '@material-ui/core/Input';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
@@ -28,22 +28,19 @@ class AddTag extends Component {
     };
   }
 
-  /**
-   * @title 다음 누르면 부모에게 값 전달
-   */
-  handleSaveButtonClick = () => {
-    this.props.onSubmit({
-      tag: this.state.addTagList,
-      sticker: this.state.clicked_sticker,
-      isTag: true,
-    });
-  };
-
-  /**
-   * @title 취소 누르면 이전 페이지로 돌아가기
-   */
   goCancle = () => {
     this.props.history.goBack();
+  };
+
+  handleSaveButtonClick = () => {
+    // const { tag_list, clicked_sticker } = this.state;
+    // this.props.setTagState.bind(this);
+
+    this.props.onSubmit({
+      tag: this.state.tag_list,
+      sticker: this.state.clicked_sticker,
+      isTag: false,
+    });
   };
 
   /**
@@ -54,7 +51,7 @@ class AddTag extends Component {
     const addTagList = [...prevAddTagList, ''];
 
     this.setState({
-      addTagList,
+      addTagList: newAddTagList,
     });
   };
 
@@ -65,21 +62,6 @@ class AddTag extends Component {
    */
   handleChangeInput = (i) => (tag) => {
     const { addTagList: prevAddTagList } = this.state;
-    console.log('tag===================', tag);
-    const addTagList = prevAddTagList.map((item, index) =>
-      index === i ? tag : item
-    );
-
-    this.setState({
-      addTagList,
-    });
-  };
-
-  /**
-   * 인풋값 수정되면 state 바꿔주기
-   */
-  handleChangeAddTaglist = (i) => (tag) => {
-    const { addTagList: prevAddTagList } = this.state;
 
     const addTagList = prevAddTagList.map((item, index) =>
       index === i ? tag : item
@@ -88,6 +70,7 @@ class AddTag extends Component {
     this.setState({
       addTagList,
     });
+    // console.log(`${index} event: `, e.target.value);
   };
 
   stickerNum = (e) => {
@@ -97,14 +80,27 @@ class AddTag extends Component {
     console.log(this.state.clicked_sticker);
   };
 
+  test = (e) => {
+    this.setState({
+      test: e.target.value,
+    });
+    console.log('test:', this.state.test);
+
+    // setTimeout(() => {
+    //   this.setState((prevState) => ({
+    //     tag_list: [...prevState.tag_list, test],
+    //   }));
+    // }, 2000);
+  };
+
   render() {
     const { addTagList } = this.state;
     const addTagListElements = addTagList.map((tag, index) => {
       return (
         <AddTagButton
-          key={index}
-          tag={tag}
-          handleChangeTagButton={this.handleChangeAddTaglist(index)}
+          key={`${index}-${tag}`}
+          index={index}
+          handleChangeInput={this.handleChangeInput}
           // ref={this.textRef}
         />
       );
@@ -126,8 +122,6 @@ class AddTag extends Component {
     const style = {
       display: 'block',
     };
-
-    console.log(this.state.addTagList);
 
     return (
       <div id="container">
