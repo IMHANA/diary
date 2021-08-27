@@ -30,7 +30,6 @@ class DayList extends Component {
       month: month,
       year: year,
     });
-    console.log('mon_year: ', mon_year);
     fetch('http://localhost:3003/diary/diary_month/' + mon_year, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
