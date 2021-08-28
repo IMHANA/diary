@@ -50,6 +50,9 @@ class AddNewDiary extends Component {
     });
   };
   render() {
+    console.log('스티커: ', this.state.clicked_sticker);
+    console.log('태그: ', this.state.tag_list);
+
     return (
       <div id="container">
         {this.state.isAddTag ? (

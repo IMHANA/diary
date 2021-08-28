@@ -11,7 +11,7 @@ import { instanceOf } from 'prop-types';
 import DayDetail from '../DayDetail';
 // import { SketchPicker } from 'react-color';
 
-const writeBoard = memo(() => {
+const WriteBoard = memo(() => {
   return (
     <div className="writing-board" contentEditable={true}>
       하나
@@ -143,7 +143,7 @@ class NewDay extends Component {
 
             <div className="write_area">
               {/* <textarea className="writing-board"></textarea> */}
-              <writeBoard />
+              <WriteBoard />
               {/* <div className="writing-board" contentEditable={true}>
                 하나
               </div> */}

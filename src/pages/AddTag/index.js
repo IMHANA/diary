@@ -3,6 +3,7 @@ import './addTag.css';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import AddTagButton from './addTagButton';
+import { EcoTwoTone } from '@material-ui/icons';
 
 class AddTag extends Component {
   // static propsTypes = {
@@ -25,6 +26,7 @@ class AddTag extends Component {
       isTag: this.props.isAddTad,
       addTagList: [], //계속 인풋창 생성
       test: '',
+      isSelectedSticker: 'clicked',
     };
   }
 
@@ -91,11 +93,10 @@ class AddTag extends Component {
     });
   };
 
-  stickerNum = (e) => {
+  changeStickerNum = (e) => {
     this.setState({
-      clicked_sticker: e.target.value,
+      clicked_sticker: e.target.name,
     });
-    console.log(this.state.clicked_sticker);
   };
 
   render() {
@@ -129,6 +130,8 @@ class AddTag extends Component {
       display: 'block',
     };
 
+    console.log('내가 클릭한 스티커', this.state.clicked_sticker);
+
     return (
       <>
         <div id="write_date">{full_day}</div>
@@ -144,44 +147,50 @@ class AddTag extends Component {
             className="addlist_sticker"
             src="/image/angry.png"
             alt="분노의말랭이"
-            value="1"
-            onClick={this.stickerNum}
+            name="1"
+            onClick={this.changeStickerNum}
           />
           <img
             className="addlist_sticker"
             src="/image/good.png"
             alt="좋음의말랭이"
-            value="2"
+            name="2"
+            onClick={this.changeStickerNum}
           />
           <img
             className="addlist_sticker"
             src="/image/sad.png"
             alt="슬픔의말랭이"
-            value="3"
+            name="3"
+            onClick={this.changeStickerNum}
           />
           <img
             className="addlist_sticker"
             src="/image/happy.png"
             alt="행복의말랭이"
-            value="4"
+            name="4"
+            onClick={this.changeStickerNum}
           />
           <img
             className="addlist_sticker"
             src="/image/soso.png"
             alt="그저그런말랭이"
-            value="5"
+            name="5"
+            onClick={this.changeStickerNum}
           />
           <img
             className="addlist_sticker"
             src="/image/tired.png"
             alt="지친말랭이"
-            value="6"
+            name="6"
+            onClick={this.changeStickerNum}
           />
           <img
             className="addlist_sticker"
             src="/image/what.png"
             alt="에엥의말랭이"
-            value="7"
+            name="7"
+            onClick={(e) => this.changeStickerNum(this.name)}
           />
         </div>
         <div id="btnbox">
