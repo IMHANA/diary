@@ -156,7 +156,7 @@ class Main extends Component {
         // } else {
         // console.log(json);
         if (json) {
-          alert('ok');
+          // alert('ok');
           this.props.history.push('/monthly');
           // setCookie('user_id', this.state.user_id, { path: '/' });
         }
@@ -167,7 +167,7 @@ class Main extends Component {
       user_id: '',
       pwd: '',
     });
-    alert('여기까지는 되나');
+    // alert('여기까지는 되나');
   };
 
   render() {

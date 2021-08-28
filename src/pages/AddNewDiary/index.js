@@ -41,6 +41,27 @@ class AddNewDiary extends Component {
     console.log('drawing => ', drawing);
     console.log('text_field => ', text_field);
     // api.요청함(tag, sticker, drawing, text_field);
+    fetch('http://localhost:3003/diary/new_diary', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({
+        title_list: tag_list,
+        painting: drawing,
+        text_field: text_field,
+        sticker: clicked_sticker,
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        // if (json.statusCode === 200 || json.statusCode === 201) {
+        alert('저장완료');
+        //     this.props.history.push('/monthly');
+        //   } else {
+        //     alert('저장실패');
+        //   }
+      })
+      .catch((e) => alert('저장실패'));
   };
 
   setTagState = (tag, sticker, isTag) => {
