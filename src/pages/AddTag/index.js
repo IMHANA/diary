@@ -125,7 +125,7 @@ class AddTag extends Component {
       day = String('0' + day);
     }
     let full_day = year + month + day;
-    console.log('full_day: ', full_day);
+    // console.log('full_day: ', full_day);
 
     const style = {
       display: 'block',

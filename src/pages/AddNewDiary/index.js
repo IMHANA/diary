@@ -56,7 +56,7 @@ class AddNewDiary extends Component {
       .then((json) => {
         // if (json.statusCode === 200 || json.statusCode === 201) {
         alert('저장완료');
-        //     this.props.history.push('/monthly');
+        // this.props.history.push('/monthly');
         //   } else {
         //     alert('저장실패');
         //   }
@@ -126,6 +126,8 @@ class AddNewDiary extends Component {
             lineWidth={this.state.lineWidth}
             lineColor={this.state.lineColor}
             setDrawingState1={this.setDrawingState1}
+            tag_list={this.state.tag_list}
+            clicked_sticker={this.state.clicked_sticker}
           />
         )}
         {/* <h1>dd</h1>

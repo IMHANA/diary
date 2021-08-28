@@ -33,9 +33,10 @@ class NewDay extends Component {
       backgroundColor: this.props.backgroundColor,
       lineColor: this.props.lineColor,
       lineWidth: this.props.lineWidth,
-      today: new Date(),
       drawing: this.props.drawing,
       text_field: this.props.text_field,
+      tag_list: this.props.tag_list,
+      clicked_sticker: this.props.clicked_sticker,
       // backgroundColor: '#fff',
       // lineColor: 'black',
       // lineWidth: 3,
@@ -130,6 +131,41 @@ class NewDay extends Component {
 
     console.log(this.state.text_field);
 
+    //오늘날짜
+    const today = new Date();
+    let year = String(today.getFullYear());
+    let month = String(today.getMonth() + 1);
+    let day = String(today.getDate());
+
+    if (month.length < 2) {
+      month = String('0' + month);
+    }
+    if (day.length < 2) {
+      day = String('0' + day);
+    }
+    let full_day = year + month + day;
+
+    let { clicked_sticker } = this.state;
+    console.log('clicked_sticker=====', clicked_sticker);
+    if (clicked_sticker == 1) {
+      clicked_sticker = 'angry';
+    } else if (clicked_sticker == 2) {
+      clicked_sticker = 'good';
+    } else if (clicked_sticker == 3) {
+      clicked_sticker = 'sad';
+    } else if (clicked_sticker == 4) {
+      clicked_sticker = 'happy';
+    } else if (clicked_sticker == 5) {
+      clicked_sticker = 'soso';
+    } else if (clicked_sticker == 6) {
+      clicked_sticker = 'tired';
+    } else if (clicked_sticker == 7) {
+      clicked_sticker = 'what';
+    } else {
+      clicked_sticker = 'nothing';
+    }
+    console.log('clicked_sticker=====', clicked_sticker);
+
     return (
       <div id="container">
         {/* {this.state.lineColor} */}
@@ -147,14 +183,18 @@ class NewDay extends Component {
         </div>
         <div>
           <div id="writing_date">
-            <h2>20210803</h2>
+            <h2>{full_day}</h2>
           </div>
           <div id="writing_title">
-            <h3 id="little_title">#주말 #집 #토마토 #텃밭</h3>
+            <h3 id="little_title">
+              {this.state.tag_list.map((tag, index) => {
+                return <span key={index}>#{tag}</span>;
+              })}
+            </h3>
             <div id="title_sticker">
               <img
                 className="title_sticker"
-                src={good}
+                src={`/image/${clicked_sticker}.png`}
                 alt={good}
                 title={good}
               />
