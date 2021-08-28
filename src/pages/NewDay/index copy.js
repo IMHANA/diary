@@ -11,13 +11,11 @@ import { instanceOf } from 'prop-types';
 import DayDetail from '../DayDetail';
 // import { SketchPicker } from 'react-color';
 
-const WriteBoard = memo(({ onChange }) => {
+const WriteBoard = memo(() => {
   return (
-    <textarea
-      className="writing-board"
-      contentEditable={true}
-      onChange={onChange}
-    />
+    <div className="writing-board" contentEditable={true}>
+      하나
+    </div>
   );
 });
 class NewDay extends Component {
@@ -30,34 +28,20 @@ class NewDay extends Component {
 
     const { cookies } = props;
     this.state = {
-      backgroundColor: this.props.backgroundColor,
-      lineColor: this.props.lineColor,
-      lineWidth: this.props.lineWidth,
+      backgroundColor: '#fff',
+      lineColor: 'black',
+      lineWidth: 3,
       today: new Date(),
-      drawing: this.props.drawing,
-      text_field: this.props.text_field,
-      // backgroundColor: '#fff',
-      // lineColor: 'black',
-      // lineWidth: 3,
-      // today: new Date(),
-      // drawing: '',
-      // text_field: '',
     };
     this._sketch = React.createRef();
     //부모 컴포넌트에서 자식 컴포넌트에 접근하고 싶을 때 사용
   }
 
-  // 저장 누르면 부모에게 값 전달
-  handleSaveButtonClick = () => {
-    console.log(this.props);
-    this.props.onsubmit(
-      this.state.backgroundColor,
-      this.state.lineColor,
-      this.state.lineWidth,
-      this.state.drawing,
-      this.state.text_field
-    );
-  };
+  componentDidMount() {}
+
+  // handleChangeComplete = (color) => {
+  //   this.setState({ background: color.hex });
+  // };
 
   handleChangePenColor = (e) => {
     // const penColor = e.target.value;
@@ -88,25 +72,11 @@ class NewDay extends Component {
     console.log(this.state.lineWidth);
   };
 
-  handleButtonClick = () => {
-    console.log('=== 클릭 ===');
-    console.log('this.props => ', this.props);
-    this.props.setDrawingState1(
-      this._sketch.current.toDataURL(),
-      this.state.text_field
-    );
-
-    // console.log(this._sketch.current.addImg());
-
+  handleButtonClick() {
+    console.log('====-=-=-=-=-=-=');
+    console.log(this._sketch);
     // this.props.setDiaryState();
-  };
-
-  write_area = (e) => {
-    console.log('e => ', e);
-    this.setState({
-      text_field: e.target.value,
-    });
-  };
+  }
 
   render() {
     //A component is `contentEditable` and contains `children` managed by React.
@@ -127,8 +97,6 @@ class NewDay extends Component {
 
     // console.log('dsjkhfbd', this.state.value);
     const good = '/image/good.png';
-
-    console.log(this.state.text_field);
 
     return (
       <div id="container">
@@ -179,7 +147,7 @@ class NewDay extends Component {
 
             <div className="write_area">
               {/* <textarea className="writing-board"></textarea> */}
-              <WriteBoard onChange={this.write_area} />
+              <WriteBoard />
               {/* <div className="writing-board" contentEditable={true}>
                 하나
               </div> */}

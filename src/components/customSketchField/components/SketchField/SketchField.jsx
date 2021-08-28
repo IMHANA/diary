@@ -157,9 +157,9 @@ class SketchField extends PureComponent {
     let canvas = this._fc;
     fabric.Image.fromURL(dataUrl, (oImg) => {
       let opts = {
-        left: Math.random() * (canvas.getWidth() - oImg.width * 0.5),
-        top: Math.random() * (canvas.getHeight() - oImg.height * 0.5),
-        scale: 0.5,
+        left: Math.random() * (canvas.getWidth() - oImg.width * 1),
+        top: Math.random() * (canvas.getHeight() - oImg.height * 1),
+        scale: 1,
       };
       Object.assign(opts, options);
       oImg.scale(opts.scale);

@@ -26,7 +26,7 @@ class AddTag extends Component {
       isTag: this.props.isAddTad,
       addTagList: [], //계속 인풋창 생성
       test: '',
-      isSelectedSticker: 'clicked',
+      oriTransform: '',
     };
   }
 
@@ -94,6 +94,7 @@ class AddTag extends Component {
   };
 
   changeStickerNum = (e) => {
+    console.log('eeee => ', e);
     this.setState({
       clicked_sticker: e.target.name,
     });

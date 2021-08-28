@@ -16,7 +16,7 @@
 #writing_date {
   display: flex;
   justify-content: center;
-  color:darkred;
+  color: darkred;
 }
 
 #writing_title {
@@ -50,13 +50,13 @@
   background-color: rgb(162, 168, 255);
   width: 550px;
   height: 400px;
-  margin:0;
+  margin: 0;
   padding: 0;
 }
 
 #write_area {
   display: inline;
-  background-color:rgb(126, 202, 200) !important;
+  background-color: rgb(126, 202, 200) !important;
   width: 550px;
   height: 400px;
   padding: 0 !important;
@@ -68,7 +68,8 @@
   margin-top: 20px;
 }
 
-#cancle_btn .MuiSvgIcon-root, #save_btn .MuiSvgIcon-root {
+#cancle_btn .MuiSvgIcon-root,
+#save_btn .MuiSvgIcon-root {
   font-size: 2.3rem;
 }
 #cancle_btn {
@@ -88,16 +89,17 @@
   cursor: pointer;
 }
 
-.write_area{
+.write_area {
   width: 550px;
   height: 400px;
-  background-color:rgb(126, 202, 200);  
+  background-color: rgb(126, 202, 200);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.writing-board{
+.writing-board {
+  height: 100%;
   width: 100%;
   text-align: center;
   word-break: break-all;
@@ -106,9 +108,11 @@
   outline: none;
   border: none;
   font-size: 25px;
+  background-color: rgb(126, 202, 200);
 }
 
-#brush-color-box, #back-color-box {
+#brush-color-box,
+#back-color-box {
   width: 30px;
   height: 30px;
   padding: 0;

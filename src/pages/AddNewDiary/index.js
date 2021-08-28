@@ -19,20 +19,51 @@ class AddNewDiary extends Component {
     this.state = {
       tag_list: [],
       clicked_sticker: 0,
-      backgroundColor: '',
-      lineWidth: 0,
+      // backgroundColor: '',
+      // lineWidth: 0,
       today: new Date(),
       isAddTag: true,
+      backgroundColor: '#fff',
+      lineColor: 'black',
+      lineWidth: 3,
+      drawing: '',
+      text_field: '',
       // tagData: [],
       // diaryData: [],
     };
   }
+
+  setDrawingState1 = (drawing, text_field) => {
+    const { clicked_sticker, tag_list } = this.state;
+    console.log('=== 요청 파람 ===');
+    console.log('clicked_sticker => ', clicked_sticker);
+    console.log('tag_list => ', tag_list);
+    console.log('drawing => ', drawing);
+    console.log('text_field => ', text_field);
+    // api.요청함(tag, sticker, drawing, text_field);
+  };
 
   setTagState = (tag, sticker, isTag) => {
     this.setState({
       tag_list: tag,
       clicked_sticker: sticker,
       isAddTag: false,
+    });
+  };
+
+  setDrawingState = (
+    backgroundColor,
+    lineColor,
+    lineWidth,
+    drawing,
+    text_field
+  ) => {
+    this.setState({
+      backgroundColor: backgroundColor,
+      lineColor: lineColor,
+      lineWidth: lineWidth,
+      drawing: drawing,
+      text_field: text_field,
     });
   };
 
@@ -50,8 +81,13 @@ class AddNewDiary extends Component {
     });
   };
   render() {
-    console.log('스티커: ', this.state.clicked_sticker);
-    console.log('태그: ', this.state.tag_list);
+    // console.log('스티커: ', this.state.clicked_sticker);
+    // console.log('태그: ', this.state.tag_list);
+    // console.log('배경색: ', this.state.backgroundColor);
+    // console.log('lineColor: ', this.state.lineColor);
+    // console.log('lineWidth: ', this.state.lineWidth);
+    // console.log('drawing: ', this.state.drawing);
+    // console.log('text_field: ', this.state.text_field);
 
     return (
       <div id="container">
@@ -63,7 +99,13 @@ class AddNewDiary extends Component {
             onSubmit={this.setTagState}
           />
         ) : (
-          <NewDay onSubmit={this.setTagState} />
+          <NewDay
+            onSubmit={this.setDrawingState}
+            backgroundColor={this.state.backgroundColor}
+            lineWidth={this.state.lineWidth}
+            lineColor={this.state.lineColor}
+            setDrawingState1={this.setDrawingState1}
+          />
         )}
         {/* <h1>dd</h1>
         <NewDay onSubmit={this.setTagState} />
