@@ -20,14 +20,31 @@ class DayDetail extends Component {
     year: this.props.year,
     month: this.props.month,
     date: this.props.date,
+    full_day: this.props.full_day,
     backgroundColor: '#fff',
     lineColor: 'black',
     lineWidth: 3,
+    diary: [],
   };
 
   // handleChangeComplete = (color) => {
   //   this.setState({ background: color.hex });
   // };
+
+  componentDidMount() {
+    const month = this.state.month;
+    const year = this.state.year;
+    const date = this.state.date;
+    const day = year + month + date;
+
+    fetch('http://localhost:3003/diary/diary_date/' + day, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .then((data) => this.setState({ diary: data }));
+  }
 
   handleChangePenColor = (e) => {
     // const penColor = e.target.value;
@@ -77,6 +94,8 @@ class DayDetail extends Component {
 
     // console.log('dsjkhfbd', this.state.value);
     const good = '/image/good.png';
+    const full_day = this.props.location.state.full_day;
+    console.log(full_day);
 
     return (
       <div id="container">
@@ -95,7 +114,7 @@ class DayDetail extends Component {
         </div>
         <div>
           <div id="writing_date">
-            <h2>20210803</h2>
+            <h2>{full_day}</h2>
           </div>
           <div id="writing_title">
             <h3 id="little_title">#주말 #집 #토마토 #텃밭</h3>
