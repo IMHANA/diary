@@ -8,6 +8,7 @@ import { SketchField, Tools } from '../../components/customSketchField';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 // import { SketchPicker } from 'react-color';
+import './dayDetail.css';
 
 const writeBoard = memo(() => {
   return (
@@ -98,23 +99,23 @@ class DayDetail extends Component {
       };
     })();
 
-    // console.log('dsjkhfbd', this.state.value);
-    const good = '/image/good.png';
-    // const full_day = this.props.location.state.full_day;
-    // console.log(full_day);
-
-    //태그 한개씩 꺼내기
+    //태그 한개씩 꺼내기, 스티커 가져오기
     const title = [];
     const sticker = [];
+    let text = '';
+    let image = '';
+
     this.state.diary.map((list, idx) => {
       list.title_list.forEach((tag) => {
         title.push(tag);
       });
       sticker.push(list.sticker);
+      text = list.text_field;
+      image = list.painting;
     });
     console.log(this.state.diary);
+    console.log('image', image);
     console.log(sticker[0]);
-    // sticker = sticker[0];
     if (sticker[0] == 1) {
       sticker[0] = 'angry';
     } else if (sticker[0] == 2) {
@@ -133,12 +134,11 @@ class DayDetail extends Component {
       sticker[0] = 'nothing';
     }
 
-    // let sticker = this.state.diary.sticker;
-    // console.log('스티커', sticker);
+    // const text = '';
+    // console.log(text);
 
     return (
       <div id="container">
-        {/* {this.state.lineColor} */}
         <div style={{ width: '75%', height: '5%' }} id="mid_container">
           <div id="list_container">
             <TextField
@@ -171,9 +171,7 @@ class DayDetail extends Component {
             </div>
           </div>
           <div id="writing_container">
-            {/* <div id='paint_area'></div> */}
-            {/* <CanvasDraw brushColor="rgba(155,12,60,0.3)" onChange={() => console.log("onChange")} /> */}
-            <SketchField
+            {/* <SketchField
               ref={(c) => (this._sketch = c)}
               width={550}
               height={400}
@@ -181,15 +179,18 @@ class DayDetail extends Component {
               lineColor={this.state.lineColor}
               lineWidth={this.state.lineWidth}
               backgroundColor={this.state.backgroundColor}
-              // onChange={(e)=> console.log(e)}
-            />
+            /> */}
+            <span id="image_field">{image}</span>
 
             <div style={{ display: 'none' }}></div>
             {/* <TextField onKeyDown="if(event.keyCode===13) {let v=this.value, s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" id="write_area" style={{whiteSpace: "pre-line;"}}></TextField> */}
 
-            <div className="write_area">
+            <div
+              className="write_area"
+              style={{ backgroundColor: 'transparent' }}
+            >
               {/* <textarea className="writing-board"></textarea> */}
-              <writeBoard />
+              <span>{text}</span>
               {/* <div className="writing-board" contentEditable={true}>
                 하나
               </div> */}
