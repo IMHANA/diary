@@ -105,14 +105,36 @@ class DayDetail extends Component {
 
     //태그 한개씩 꺼내기
     const title = [];
-    this.state.diary.map((list) => {
+    const sticker = [];
+    this.state.diary.map((list, idx) => {
       list.title_list.forEach((tag) => {
         title.push(tag);
       });
+      sticker.push(list.sticker);
     });
+    console.log(this.state.diary);
+    console.log(sticker[0]);
+    // sticker = sticker[0];
+    if (sticker[0] == 1) {
+      sticker[0] = 'angry';
+    } else if (sticker[0] == 2) {
+      sticker[0] = 'good';
+    } else if (sticker[0] == 3) {
+      sticker[0] = 'sad';
+    } else if (sticker[0] == 4) {
+      sticker[0] = 'happy';
+    } else if (sticker[0] == 5) {
+      sticker[0] = 'soso';
+    } else if (sticker[0] == 6) {
+      sticker[0] = 'tired';
+    } else if (sticker[0] == 7) {
+      sticker[0] = 'what';
+    } else {
+      sticker[0] = 'nothing';
+    }
 
-    let sticker = this.state.diary.sticker;
-    console.log('스티커', sticker);
+    // let sticker = this.state.diary.sticker;
+    // console.log('스티커', sticker);
 
     return (
       <div id="container">
@@ -142,9 +164,9 @@ class DayDetail extends Component {
             <div id="title_sticker">
               <img
                 className="title_sticker"
-                src={good}
-                alt={good}
-                title={good}
+                src={`/image/${sticker[0]}.png`}
+                alt={`${sticker[0]}`}
+                title={`${sticker[0]}`}
               />
             </div>
           </div>
@@ -190,17 +212,6 @@ class DayDetail extends Component {
               value="#ffffff"
               onChange={this.handleChangeBackGroundColor}
             />
-          </div>
-          <div id="btn_container">
-            <button onClick={this.home}>156165</button>
-            <IconButton cols="20" rows="10" aria-label="delete" id="cancle_btn">
-              <Delete />
-            </IconButton>
-            <IconButton aria-label="save" id="save_btn">
-              <SaveAlt />
-            </IconButton>
-            {/* <span id="cancle_btn">이전</span> */}
-            {/* <span id='save_btn'>저장</span> */}
           </div>
         </div>
       </div>

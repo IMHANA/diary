@@ -204,8 +204,8 @@ class NewDay extends Component {
               <img
                 className="title_sticker"
                 src={`/image/${clicked_sticker}.png`}
-                alt={good}
-                title={good}
+                alt={`${clicked_sticker}`}
+                title={`${clicked_sticker}`}
               />
             </div>
           </div>
