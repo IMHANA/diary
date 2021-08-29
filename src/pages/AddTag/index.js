@@ -6,9 +6,9 @@ import AddTagButton from './addTagButton';
 import { EcoTwoTone } from '@material-ui/icons';
 
 class AddTag extends Component {
-  // static propsTypes = {
-  //   cookies: instanceOf(Cookies).isRequired,
-  // };
+  static propsTypes = {
+    cookies: instanceOf(Cookies).isRequired,
+  };
 
   cookies = 'hi';
 
@@ -17,8 +17,8 @@ class AddTag extends Component {
 
     console.log('이게 무슨일이야 ..: ', props);
 
-    // const { cookies } = props;
-    // this.textRef = React.createRef();
+    const { cookies } = props;
+    this.textRef = React.createRef();
 
     this.state = {
       tag_list: this.props.tag_list,
@@ -206,5 +206,5 @@ class AddTag extends Component {
     );
   }
 }
-// export default withCookies(AddTag);
-export default AddTag;
+export default withCookies(AddTag);
+// export default AddTag;

@@ -60,6 +60,13 @@ class DayList extends Component {
     });
   };
 
+  /**
+   * @title 취소 누르면 이전 페이지로 돌아가기
+   */
+  goCancle = () => {
+    this.props.history.goBack();
+  };
+
   render() {
     console.log(this.state.diary);
     return (
@@ -89,7 +96,10 @@ class DayList extends Component {
                 <Add style={{ fontSize: '45px' }} />
               </span>
               <span>
-                <ArrowBack style={{ fontSize: '45px' }} />
+                <ArrowBack
+                  style={{ fontSize: '45px' }}
+                  onClick={this.goCancle}
+                />
               </span>
             </div>
           </div>

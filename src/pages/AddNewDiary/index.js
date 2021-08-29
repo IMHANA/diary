@@ -101,6 +101,13 @@ class AddNewDiary extends Component {
       isAddTag: true,
     });
   };
+
+  setCancel = (isAddTag) => {
+    this.setState({
+      isAddTag: isAddTag,
+    });
+  };
+
   render() {
     // console.log('스티커: ', this.state.clicked_sticker);
     // console.log('태그: ', this.state.tag_list);
@@ -122,12 +129,14 @@ class AddNewDiary extends Component {
         ) : (
           <NewDay
             onSubmit={this.setDrawingState}
+            setCancel={this.setCancel}
             backgroundColor={this.state.backgroundColor}
             lineWidth={this.state.lineWidth}
             lineColor={this.state.lineColor}
             setDrawingState1={this.setDrawingState1}
             tag_list={this.state.tag_list}
             clicked_sticker={this.state.clicked_sticker}
+            isAddTag={this.state.isAddTag}
           />
         )}
         {/* <h1>dd</h1>

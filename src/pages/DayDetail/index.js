@@ -17,6 +17,9 @@ const writeBoard = memo(() => {
 });
 class DayDetail extends Component {
   state = {
+    year: this.props.year,
+    month: this.props.month,
+    date: this.props.date,
     backgroundColor: '#fff',
     lineColor: 'black',
     lineWidth: 3,

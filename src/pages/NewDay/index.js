@@ -37,6 +37,7 @@ class NewDay extends Component {
       text_field: this.props.text_field,
       tag_list: this.props.tag_list,
       clicked_sticker: this.props.clicked_sticker,
+      isAddTag: this.props.clicked_sticker,
       // backgroundColor: '#fff',
       // lineColor: 'black',
       // lineWidth: 3,
@@ -56,7 +57,8 @@ class NewDay extends Component {
       this.state.lineColor,
       this.state.lineWidth,
       this.state.drawing,
-      this.state.text_field
+      this.state.text_field,
+      this.state.isAddTag
     );
   };
 
@@ -89,6 +91,7 @@ class NewDay extends Component {
     console.log(this.state.lineWidth);
   };
 
+  //save버튼 누르면 부모컴포넌트에 값 전달
   handleButtonClick = () => {
     console.log('=== 클릭 ===');
     console.log('this.props => ', this.props);
@@ -98,7 +101,6 @@ class NewDay extends Component {
     );
 
     // console.log(this._sketch.current.addImg());
-
     // this.props.setDiaryState();
   };
 
@@ -107,6 +109,13 @@ class NewDay extends Component {
     this.setState({
       text_field: e.target.value,
     });
+  };
+
+  /**
+   * @title 취소 누르면 이전 페이지로 돌아가기
+   */
+  goCancel = () => {
+    this.props.setCancel(true);
   };
 
   render() {
@@ -178,7 +187,7 @@ class NewDay extends Component {
               style={{ width: '80px' }}
             />
             <Add style={{ fontSize: '45px' }} />
-            <ArrowBack style={{ fontSize: '45px' }} />
+            <ArrowBack style={{ fontSize: '45px' }} onClick={this.goCancel} />
           </div>
         </div>
         <div>
@@ -244,7 +253,8 @@ class NewDay extends Component {
             />
           </div>
           <div id="btn_container">
-            <button onClick={this.home}>156165</button>
+            {/*버튼 누르면 브러시 두께 바뀌는거. 다듬어서 옵션으로 만들것 */}
+            {/* <button onClick={this.home}>156165</button> */}
             <IconButton cols="20" rows="10" aria-label="delete" id="cancle_btn">
               <Delete />
             </IconButton>
