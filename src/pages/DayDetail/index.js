@@ -5,7 +5,8 @@ import IconButton from '@material-ui/core/IconButton';
 import { Delete, SaveAlt } from '@material-ui/icons';
 // import CanvasDraw from "react-canvas-draw";
 import { SketchField, Tools } from '../../components/customSketchField';
-import { withCookies } from 'react-cookie';
+import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 // import { SketchPicker } from 'react-color';
 
 const writeBoard = memo(() => {
@@ -16,28 +17,33 @@ const writeBoard = memo(() => {
   );
 });
 class DayDetail extends Component {
-  state = {
-    year: this.props.year,
-    month: this.props.month,
-    date: this.props.date,
-    full_day: this.props.full_day,
-    backgroundColor: '#fff',
-    lineColor: 'black',
-    lineWidth: 3,
-    diary: [],
+  static propsTypes = {
+    cookies: instanceOf(Cookies).isRequired,
   };
+
+  constructor(props) {
+    super(props);
+    const { cookies } = props;
+
+    this.state = {
+      year: this.props.location.state.year,
+      month: this.props.location.state.month,
+      date: this.props.location.state.date,
+      full_day: this.props.location.state.full_day,
+      backgroundColor: '#fff',
+      lineColor: 'black',
+      lineWidth: 3,
+      diary: [],
+      title_list: [],
+    };
+  }
 
   // handleChangeComplete = (color) => {
   //   this.setState({ background: color.hex });
   // };
 
   componentDidMount() {
-    const month = this.state.month;
-    const year = this.state.year;
-    const date = this.state.date;
-    const day = year + month + date;
-
-    fetch('http://localhost:3003/diary/diary_date/' + day, {
+    fetch('http://localhost:3003/diary/diary_date/' + this.state.full_day, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -94,8 +100,19 @@ class DayDetail extends Component {
 
     // console.log('dsjkhfbd', this.state.value);
     const good = '/image/good.png';
-    const full_day = this.props.location.state.full_day;
-    console.log(full_day);
+    // const full_day = this.props.location.state.full_day;
+    // console.log(full_day);
+
+    //태그 한개씩 꺼내기
+    const title = [];
+    this.state.diary.map((list) => {
+      list.title_list.forEach((tag) => {
+        title.push(tag);
+      });
+    });
+
+    let sticker = this.state.diary.sticker;
+    console.log('스티커', sticker);
 
     return (
       <div id="container">
@@ -114,10 +131,14 @@ class DayDetail extends Component {
         </div>
         <div>
           <div id="writing_date">
-            <h2>{full_day}</h2>
+            <h2>{this.state.full_day}</h2>
           </div>
           <div id="writing_title">
-            <h3 id="little_title">#주말 #집 #토마토 #텃밭</h3>
+            <h3 id="little_title">
+              {title.map((title_arr, idx) => {
+                return <span>#{title_arr}</span>;
+              })}
+            </h3>
             <div id="title_sticker">
               <img
                 className="title_sticker"
