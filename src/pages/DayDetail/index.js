@@ -330,14 +330,10 @@ class DayDetail extends Component {
                 <div style={{ display: 'none' }}></div>
 
                 <div className="write_area for_space">
-                  {this.state.diary.text_field.split('\n').map((line) => {
-                    return (
-                      <span className="for_space">
-                        {line}
-                        <br />
-                      </span>
-                    );
-                  })}
+                  {this.state.diary.text_field}
+                  {/* {this.state.diary.text_field?.split('\n').map((line) => {
+                    return line;
+                  })} */}
                 </div>
               </div>
               <div id="edit_btn">
