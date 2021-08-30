@@ -40,19 +40,17 @@ class DayList extends Component {
   }
 
   //로우 선택하면 해당 일기 상세로 이동
-  goDayDetail = (e) => {
+  goDayDetail = (e, diary_no) => {
     console.log(e);
     const day = String(e.substring(0, 10));
     const full_day = day.replace(/\-/g, '');
     const day_string = String(e.substring(8, 10));
     console.log('day_string: ', day_string);
     this.props.history.push({
-      pathname: `/monthly/month/${day_string}`,
+      pathname: `/monthly/month/${diary_no}`,
       state: {
-        year: this.state.year,
-        month: this.state.month,
-        date: day_string,
         full_day: full_day,
+        diary_no: diary_no,
       },
     });
   };
@@ -112,7 +110,9 @@ class DayList extends Component {
                 return (
                   <div
                     className={`${arr.diary_date} date_box`}
-                    onClick={(e) => this.goDayDetail(arr.diary_date)}
+                    onClick={(e) =>
+                      this.goDayDetail(arr.diary_date, arr.diary_no)
+                    }
                   >
                     <span className="date">
                       <Minimize /> {String(arr.diary_date).substring(5, 10)}

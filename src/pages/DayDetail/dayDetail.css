@@ -2,3 +2,13 @@
   width: 550px;
   height: 400px;
 }
+
+.for_space {
+  background-color: transparent;
+  white-space: 'pre-wrap';
+}
+
+#edit_btn {
+  display: flex;
+  justify-content: center;
+}
