@@ -9,6 +9,7 @@ import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 // import { SketchPicker } from 'react-color';
 import './dayDetail.css';
+import FileBase64 from 'react-file-base64';
 
 const writeBoard = memo(() => {
   return (
@@ -36,6 +37,7 @@ class DayDetail extends Component {
       lineWidth: 3,
       diary: [],
       title_list: [],
+      file: [],
     };
   }
 
@@ -82,6 +84,30 @@ class DayDetail extends Component {
     console.log(this.state.lineWidth);
   };
 
+  getFiles(files) {
+    this.setState({ file: files });
+  }
+
+  dataURItoBlob(dataURI, callback) {
+    // convert base64 to raw binary data held in a string
+    // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+    let byteString = atob(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to an ArrayBuffer
+    let ab = new ArrayBuffer(byteString.length);
+    let ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    // write the ArrayBuffer to a blob, and you're done
+    let bb = new Blob([ab]);
+    return bb;
+  }
+
   render() {
     //A component is `contentEditable` and contains `children` managed by React.
     //오류가 나는것에 대한 처리
@@ -113,6 +139,9 @@ class DayDetail extends Component {
       text = list.text_field;
       image = list.painting;
     });
+    if (image.backgroundColor == 'white') {
+      image.backgroundColor = 'transparent';
+    }
     console.log(this.state.diary);
     console.log('image', image);
     console.log(sticker[0]);
@@ -134,8 +163,23 @@ class DayDetail extends Component {
       sticker[0] = 'nothing';
     }
 
+    // let imageUrl = URL.createObjectURL(image);
+
     // const text = '';
     // console.log(text);
+    // const byteCharacters = atob(image);
+    // const byteNumbers = new Array(byteCharacters.length);
+    // for (let i = 0; i < byteCharacters.length; i++) {
+    //     byteNumbers[i] = byteCharacters.charCodeAt(i);
+    // };
+    // const byteArray = new Uint8Array(byteNumbers);
+    // const blob = new Blob([byteArray], {type: contentType});
+    // const blobUrl = URL.createObjectURL(blob);
+    // window.lacation = blobUrl;
+    // let url = image;
+    // fetch(image)
+    //   .then((res) => res.blob())
+    //   .then(console.log(image));
 
     return (
       <div id="container">
@@ -180,7 +224,17 @@ class DayDetail extends Component {
               lineWidth={this.state.lineWidth}
               backgroundColor={this.state.backgroundColor}
             /> */}
-            <span id="image_field">{image}</span>
+            {/* <span id="image_field">{imageUrl}</span> */}
+            <img
+              src={`${image}`}
+              alt={'dd'}
+              style={
+                { backgroundColor: 'white' }
+                  ? { backgroundColor: 'transparent' }
+                  : { backgroundColor: 'white' }
+              }
+            ></img>
+            {/* <FileBase64 multiple={true} onDone={this.getFiles.bind(this)} /> */}
 
             <div style={{ display: 'none' }}></div>
             {/* <TextField onKeyDown="if(event.keyCode===13) {let v=this.value, s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" id="write_area" style={{whiteSpace: "pre-line;"}}></TextField> */}
@@ -202,7 +256,7 @@ class DayDetail extends Component {
         onChangeComplete={ this.handleChangeComplete }
       /> */}
             {/* <label for="colorWell">Color:</label> */}
-            <input
+            {/* <input
               type="color"
               id="brush-color-box"
               onChange={this.handleChangePenColor}
@@ -212,7 +266,7 @@ class DayDetail extends Component {
               id="back-color-box"
               value="#ffffff"
               onChange={this.handleChangeBackGroundColor}
-            />
+            /> */}
           </div>
         </div>
       </div>

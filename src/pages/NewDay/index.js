@@ -74,6 +74,10 @@ class NewDay extends Component {
     if (this.state.backgroundColor !== e.target.value)
       this.setState({ backgroundColor: e.target.value });
   };
+
+  handleChangeBackToNone = () => {
+    this.setState({ backgroundColor: 'transparent' });
+  };
   // state = {
   //   color: "#ffc600",
   //   width: "550px",
@@ -251,6 +255,7 @@ class NewDay extends Component {
               value="#ffffff"
               onChange={this.handleChangeBackGroundColor}
             />
+            <button onClick={this.handleChangeBackToNone}>투명</button>
           </div>
           <div id="btn_container">
             {/*버튼 누르면 브러시 두께 바뀌는거. 다듬어서 옵션으로 만들것 */}
