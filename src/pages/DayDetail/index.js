@@ -9,12 +9,14 @@ import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 // import { SketchPicker } from 'react-color';
 import './dayDetail.css';
-import FileBase64 from 'react-file-base64';
+import { fabric } from 'fabric';
+import AddTagButton from '../AddTag/addTagButton';
 
-const WriteBoard = memo(({ onChange }) => {
+const WriteBoard = memo(({ onChange, value }) => {
   return (
     <textarea
       className="writing-board"
+      value={value}
       contentEditable={true}
       onChange={onChange}
     />
@@ -30,14 +32,17 @@ class DayDetail extends Component {
     const { cookies } = props;
 
     this.state = {
-      backgroundColor: '',
-      lineColor: '',
-      lineWidth: '',
+      backgroundColor: '#fff',
+      lineColor: 'black',
+      lineWidth: '3',
       full_day: this.props.location.state.full_day,
       diary: {},
       diary_no: this.props.location.state.diary_no,
       isEdit: true,
       edited_title_list: [],
+      addTagList: [], //인풋창 생성
+      clicked_sticker: 8,
+      text_field: '',
     };
     this._sketch = React.createRef();
   }
@@ -69,11 +74,21 @@ class DayDetail extends Component {
         } else {
           sticker = 'nothing';
         }
+        console.log('ssssss', this._sketch.current);
+        this._sketch.current.fromJSON(data.painting);
         this.setState({
           diary: data,
           sticker: sticker,
+          text_field: data.text_field,
+          clicked_sticker: data.sticker,
         });
       });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.isEdit !== prevState.isEdit) {
+      this._sketch.current.fromJSON(this.state.diary.painting);
+    }
   }
 
   handleChangePenColor = (e) => {
@@ -84,6 +99,10 @@ class DayDetail extends Component {
   handleChangeBackGroundColor = (e) => {
     if (this.state.backgroundColor !== e.target.value)
       this.setState({ backgroundColor: e.target.value });
+  };
+
+  handleChangeBackToNone = () => {
+    this.setState({ backgroundColor: 'transparent' });
   };
 
   home = () => {
@@ -124,6 +143,70 @@ class DayDetail extends Component {
     });
   };
 
+  handleButtonClick = () => {
+    this.setState({ backgroundColor: 'transparent' });
+  };
+
+  handleEditButtonClick = () => {
+    fetch('http://localhost:3003/diary/' + this.state.diary_no, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({
+        diary_no: this.state.diary_no,
+        title_list: this.state.edited_title_list,
+        painting: JSON.stringify(this._sketch.current.toJSON()),
+        text_field: this.state.text_field,
+        sticker: this.state.clicked_sticker,
+        diary_date: this.state.diary.diary_date,
+      }),
+    });
+  };
+
+  _onSketchChange = (e) => {
+    // this._sketch.current.fromJSON(
+    //   JSON.stringify(this._sketch.current.toJSON())
+    // );
+    console.log('e => ', e);
+    // this._sketch.fromJSON(e);
+    // console.log(e);
+  };
+
+  handleAddInput = () => {
+    const { edited_title_list } = this.state;
+
+    this.setState({
+      edited_title_list: [...edited_title_list, ''],
+    });
+  };
+
+  changeStickerNum = (e) => {
+    console.log('eeee => ', e);
+    this.setState({
+      clicked_sticker: e.target.name,
+    });
+  };
+
+  write_area = (e) => {
+    console.log('e => ', e);
+    this.setState({
+      text_field: e.target.value,
+    });
+  };
+
+  /**
+   * Add an image as object to the canvas
+   *
+   * @param dataUrl the image url or Data Url
+   * @param options object to pass and change some options when loading image, the format of the object is:
+   *
+   * {
+   *   left: <Number: distance from left of canvas>,
+   *   top: <Number: distance from top of canvas>,
+   *   scale: <Number: initial scale of image>
+   * }
+   */
+
   render() {
     //A component is `contentEditable` and contains `children` managed by React.
     //오류가 나는것에 대한 처리
@@ -140,8 +223,12 @@ class DayDetail extends Component {
         }
       };
     })();
+    // let test = JSON.parse(this.state.diary.painting);
 
     console.log('this.state.diary.title_list : ', this.state.diary.title_list);
+    console.log('edited_title_list: ', this.state.edited_title_list);
+    console.log('clicked_sticker: ', this.state.clicked_sticker);
+    console.log('text_field: ', this.state.text_field);
     return (
       <div id="container">
         {this.state.isEdit ? (
@@ -180,15 +267,26 @@ class DayDetail extends Component {
                 </div>
               </div>
               <div id="writing_container">
-                <img
-                  src={`${this.state.diary.painting}`}
+                <SketchField
+                  ref={this._sketch}
+                  // imageFormat={`${test}`}
+                  width={550}
+                  height={400}
+                  tool={Tools.Pencil}
+                  lineColor={this.state.lineColor}
+                  lineWidth={this.state.lineWidth}
+                  backgroundColor={this.state.backgroundColor}
+                  // onChange={this._onSketchChange}
+                />
+                {/* <img
+                  src={`${this.state.diary.painting}`.fromJSON()}
                   alt={'dd'}
                   style={
                     { backgroundColor: 'white' }
                       ? { backgroundColor: 'transparent' }
                       : { backgroundColor: 'white' }
                   }
-                ></img>
+                ></img> */}
 
                 <div style={{ display: 'none' }}></div>
 
@@ -238,14 +336,63 @@ class DayDetail extends Component {
                         );
                       })
                     : null}
+                  {/* <AddTagButton /> */}
+                  <button onClick={() => this.handleAddInput('hana')}>
+                    태그추가
+                  </button>
                 </h3>
-                <div id="title_sticker">
-                  {/* <img
-                className="title_sticker"
-                src={`/image/${clicked_sticker}.png`}
-                alt={`${clicked_sticker}`}
-                title={`${clicked_sticker}`}
-              /> */}
+              </div>
+              <div id="title_sticker">
+                <div>
+                  <img
+                    className="addlist_sticker"
+                    src="/image/angry.png"
+                    alt="분노의말랭이"
+                    name="1"
+                    onClick={this.changeStickerNum}
+                  />
+                  <img
+                    className="addlist_sticker"
+                    src="/image/good.png"
+                    alt="좋음의말랭이"
+                    name="2"
+                    onClick={this.changeStickerNum}
+                  />
+                  <img
+                    className="addlist_sticker"
+                    src="/image/sad.png"
+                    alt="슬픔의말랭이"
+                    name="3"
+                    onClick={this.changeStickerNum}
+                  />
+                  <img
+                    className="addlist_sticker"
+                    src="/image/happy.png"
+                    alt="행복의말랭이"
+                    name="4"
+                    onClick={this.changeStickerNum}
+                  />
+                  <img
+                    className="addlist_sticker"
+                    src="/image/soso.png"
+                    alt="그저그런말랭이"
+                    name="5"
+                    onClick={this.changeStickerNum}
+                  />
+                  <img
+                    className="addlist_sticker"
+                    src="/image/tired.png"
+                    alt="지친말랭이"
+                    name="6"
+                    onClick={this.changeStickerNum}
+                  />
+                  <img
+                    className="addlist_sticker"
+                    src="/image/what.png"
+                    alt="에엥의말랭이"
+                    name="7"
+                    onClick={this.changeStickerNum}
+                  />
                 </div>
               </div>
               <div id="writing_container">
@@ -263,7 +410,10 @@ class DayDetail extends Component {
                 <div style={{ display: 'none' }}></div>
 
                 <div className="write_area">
-                  <WriteBoard onChange={this.write_area} />
+                  <WriteBoard
+                    onChange={this.write_area}
+                    value={this.state.text_field}
+                  />
                 </div>
               </div>
               <div>
@@ -294,7 +444,7 @@ class DayDetail extends Component {
                 <IconButton
                   aria-label="save"
                   id="save_btn"
-                  onClick={this.handleButtonClick}
+                  onClick={this.handleEditButtonClick}
                 >
                   <SaveAlt />
                 </IconButton>

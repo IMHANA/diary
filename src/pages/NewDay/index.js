@@ -98,9 +98,10 @@ class NewDay extends Component {
   //save버튼 누르면 부모컴포넌트에 값 전달
   handleButtonClick = () => {
     console.log('=== 클릭 ===');
-    console.log('this.props => ', this.props);
+    console.log('this.props => ', this._sketch.current.toJSON());
     this.props.setDrawingState1(
-      this._sketch.current.toDataURL(),
+      // this._sketch.current.toDataURL(),
+      JSON.stringify(this._sketch.current.toJSON()),
       this.state.text_field
     );
 
