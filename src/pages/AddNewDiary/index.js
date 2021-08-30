@@ -54,12 +54,12 @@ class AddNewDiary extends Component {
     })
       .then((response) => response.json())
       .then((json) => {
-        // if (json.statusCode === 200 || json.statusCode === 201) {
-        alert('저장완료');
-        // this.props.history.push('/monthly');
-        //   } else {
-        //     alert('저장실패');
-        //   }
+        if (json.statusCode === 200 || json.statusCode === 201) {
+          alert('저장완료');
+          // this.props.history.push('/monthly');
+          //   } else {
+          //     alert('저장실패');
+        }
       })
       .catch((e) => alert('저장실패'));
   };

@@ -45,7 +45,7 @@
 
 #month {
   color: darkorange;
-  font-size: 60px;
+  font-size: 50px;
   text-align: center;
   /* margin-left: 400px; */
   position: absolute;
@@ -64,8 +64,21 @@
   /* margin: 0 50px 0 15px; */
 }
 
+#month_list {
+  position: static;
+  top: 300px;
+  display: flex;
+  justify-content: center;
+}
+
 .list_box {
   margin-bottom: 40px;
+  position: absolute;
+  top: 300px;
+  max-height: 60%;
+  width: 800px;
+  overflow: scroll;
+  word-break: keep-all;
 }
 
 .list_box_span:hover {

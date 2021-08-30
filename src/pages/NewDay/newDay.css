@@ -9,6 +9,11 @@
   justify-content: center;
 }
 
+#list_title {
+  position: fixed;
+  top: 150px;
+}
+
 .icon2 {
   font-size: 50px;
 }

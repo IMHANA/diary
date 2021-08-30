@@ -104,35 +104,33 @@ class DayList extends Component {
               </span>
             </div>
           </div>
-          <div>
-            <div className="list_box">
-              {this.state.diary.map((arr, idx) => {
-                return (
-                  <div
-                    className={`${arr.diary_date} date_box`}
-                    onClick={(e) =>
-                      this.goDayDetail(arr.diary_date, arr.diary_no)
-                    }
-                  >
-                    <span className="date">
-                      <Minimize /> {String(arr.diary_date).substring(5, 10)}
-                    </span>
-                    <img
-                      className="list_sticker"
-                      src={`/image/${arr.sticker}.png`}
-                      alt="말랭이"
-                    />
-                    {arr.title_list.map((title_arr, idx) => {
-                      return (
-                        <span className="list_box_span"> #{title_arr}</span>
-                      );
-                    })}
-                    {/* <span className="list_box_span">{arr.title_list}</span> */}
-                  </div>
-                );
-              })}
-            </div>
+          {/* <div id="month_list"> */}
+          <div className="list_box">
+            {this.state.diary.map((arr, idx) => {
+              return (
+                <div
+                  className={`${arr.diary_date} date_box`}
+                  onClick={(e) =>
+                    this.goDayDetail(arr.diary_date, arr.diary_no)
+                  }
+                >
+                  <span className="date">
+                    <Minimize /> {String(arr.diary_date).substring(5, 10)}
+                  </span>
+                  <img
+                    className="list_sticker"
+                    src={`/image/${arr.sticker}.png`}
+                    alt="말랭이"
+                  />
+                  {arr.title_list.map((title_arr, idx) => {
+                    return <span className="list_box_span"> #{title_arr}</span>;
+                  })}
+                  {/* <span className="list_box_span">{arr.title_list}</span> */}
+                </div>
+              );
+            })}
           </div>
+          {/* </div> */}
           <div></div>
         </div>
       </div>

@@ -160,7 +160,19 @@ class DayDetail extends Component {
         sticker: this.state.clicked_sticker,
         diary_date: this.state.diary.diary_date,
       }),
-    });
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        alert('수정완료');
+        this.props.history.push({
+          pathname: `/monthly/${this.state.full_day.substring(4, 6)}`,
+          state: {
+            year: this.state.full_day.substring(0, 4),
+            month: this.state.full_day.substring(4, 6),
+          },
+        });
+      })
+      .catch((e) => alert('수정 실패', e));
   };
 
   _onSketchChange = (e) => {
@@ -229,6 +241,7 @@ class DayDetail extends Component {
     console.log('edited_title_list: ', this.state.edited_title_list);
     console.log('clicked_sticker: ', this.state.clicked_sticker);
     console.log('text_field: ', this.state.text_field);
+    // console.log('full_day: ', this.state.full_day.substring(4, 6));
     return (
       <div id="container">
         {this.state.isEdit ? (
