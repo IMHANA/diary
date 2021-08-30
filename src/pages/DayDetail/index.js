@@ -11,11 +11,13 @@ import { instanceOf } from 'prop-types';
 import './dayDetail.css';
 import FileBase64 from 'react-file-base64';
 
-const writeBoard = memo(() => {
+const WriteBoard = memo(({ onChange }) => {
   return (
-    <div className="writing-board" contentEditable={true}>
-      하나
-    </div>
+    <textarea
+      className="writing-board"
+      contentEditable={true}
+      onChange={onChange}
+    />
   );
 });
 class DayDetail extends Component {
@@ -28,11 +30,16 @@ class DayDetail extends Component {
     const { cookies } = props;
 
     this.state = {
+      backgroundColor: '',
+      lineColor: '',
+      lineWidth: '',
       full_day: this.props.location.state.full_day,
       diary: {},
       diary_no: this.props.location.state.diary_no,
       isEdit: true,
+      edited_title_list: [],
     };
+    this._sketch = React.createRef();
   }
 
   componentDidMount() {
@@ -85,8 +92,29 @@ class DayDetail extends Component {
   };
 
   editDiary = () => {
+    // fetch('http://localhost:3003/diary/' + this.state.diary_no, {
+    //   method: 'PATCH',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   credentials: 'include',
+    //   body: JSON.stringify({
+    //     title_list: this.state.diary.title_list,
+    //     painting: this.state.diary.painting,
+    //     text_field: this.state.diary.field,
+    //     sticker: this.state.diary.sticker,
+    //   }),
+    // })
     this.setState({
       isEdit: false,
+      edited_title_list: this.state.diary.title_list,
+    });
+  };
+
+  // 태그값 수정되면 기존 title_list 대신 edited_title_list에 값 저장
+  editTitleList = (e, idx) => {
+    let arr = this.state.edited_title_list;
+    arr[idx] = e.target.value;
+    this.setState({
+      edited_title_list: arr,
     });
   };
 
@@ -176,6 +204,7 @@ class DayDetail extends Component {
             </div>
           </>
         ) : (
+          // ============================================================================
           <>
             <div style={{ width: '75%', height: '5%' }} id="mid_container">
               <div id="list_container">
@@ -186,7 +215,10 @@ class DayDetail extends Component {
                   style={{ width: '80px' }}
                 />
                 <Add style={{ fontSize: '45px' }} />
-                <ArrowBack style={{ fontSize: '45px' }} />
+                <ArrowBack
+                  style={{ fontSize: '45px' }}
+                  onClick={this.goCancel}
+                />
               </div>
             </div>
             <div>
@@ -195,42 +227,77 @@ class DayDetail extends Component {
               </div>
               <div id="writing_title">
                 <h3 id="little_title">
-                  {this.state.diary.title_list
-                    ? this.state.diary.title_list.map((title_arr, idx) => {
-                        return <span>#{title_arr}</span>;
+                  {this.state.edited_title_list
+                    ? this.state.edited_title_list.map((title_arr, idx) => {
+                        return (
+                          <input
+                            key={idx}
+                            value={title_arr}
+                            onChange={(e) => this.editTitleList(e, idx)}
+                          ></input>
+                        );
                       })
                     : null}
                 </h3>
                 <div id="title_sticker">
-                  <img
-                    className="title_sticker"
-                    src={`/image/${this.state.sticker}.png`}
-                    alt={`${this.state.sticker}`}
-                    title={`${this.state.sticker}`}
-                  />
+                  {/* <img
+                className="title_sticker"
+                src={`/image/${clicked_sticker}.png`}
+                alt={`${clicked_sticker}`}
+                title={`${clicked_sticker}`}
+              /> */}
                 </div>
               </div>
               <div id="writing_container">
-                <img
-                  src={`${this.state.diary.painting}`}
-                  alt={'dd'}
-                  style={
-                    { backgroundColor: 'white' }
-                      ? { backgroundColor: 'transparent' }
-                      : { backgroundColor: 'white' }
-                  }
-                ></img>
+                <SketchField
+                  ref={this._sketch}
+                  width={550}
+                  height={400}
+                  tool={Tools.Pencil}
+                  lineColor={this.state.lineColor}
+                  lineWidth={this.state.lineWidth}
+                  backgroundColor={this.state.backgroundColor}
+                  onChange={this._onSketchChange}
+                />
 
                 <div style={{ display: 'none' }}></div>
 
-                <div className="write_area for_space">
-                  <span className="for_space">
-                    {this.state.diary.text_field}
-                  </span>
+                <div className="write_area">
+                  <WriteBoard onChange={this.write_area} />
                 </div>
               </div>
-              <div id="edit_btn">
-                <button onClick={this.saveDiary}>수정다되따 !!!</button>
+              <div>
+                <input
+                  type="color"
+                  id="brush-color-box"
+                  onChange={this.handleChangePenColor}
+                />
+                <input
+                  type="color"
+                  id="back-color-box"
+                  value="#ffffff"
+                  onChange={this.handleChangeBackGroundColor}
+                />
+                <button onClick={this.handleChangeBackToNone}>투명</button>
+              </div>
+              <div id="btn_container">
+                {/*버튼 누르면 브러시 두께 바뀌는거. 다듬어서 옵션으로 만들것 */}
+                {/* <button onClick={this.home}>156165</button> */}
+                <IconButton
+                  cols="20"
+                  rows="10"
+                  aria-label="delete"
+                  id="cancle_btn"
+                >
+                  <Delete />
+                </IconButton>
+                <IconButton
+                  aria-label="save"
+                  id="save_btn"
+                  onClick={this.handleButtonClick}
+                >
+                  <SaveAlt />
+                </IconButton>
               </div>
             </div>
           </>
