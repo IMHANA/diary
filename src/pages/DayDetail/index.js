@@ -11,6 +11,7 @@ import { instanceOf } from 'prop-types';
 import './dayDetail.css';
 import { fabric } from 'fabric';
 import AddTagButton from '../AddTag/addTagButton';
+import { withRouter } from 'react-router-dom';
 
 const WriteBoard = memo(({ onChange, value }) => {
   return (
@@ -85,31 +86,39 @@ class DayDetail extends Component {
       });
   }
 
+  // isEdit가 삼항연산자로 되어있기 때문에 렌더되지 않은 상태의 painting은 가져오지 못한다.
+  // 만약 수정하기 버튼을 누르기 이전과 isEdit의 true, false 값이 변경되면 painting을 fromJSON형태로 변환하는 작업을 해야
+  // 제대로 인코딩된다. 이 작업없으면 계속 오류남
   componentDidUpdate(prevProps, prevState) {
     if (this.state.isEdit !== prevState.isEdit) {
       this._sketch.current.fromJSON(this.state.diary.painting);
     }
   }
 
+  //펜컬러색 계속 state변경
   handleChangePenColor = (e) => {
     if (this.state.lineColor !== e.target.value)
       this.setState({ lineColor: e.target.value });
   };
 
+  //배경색 변경시 state바꿔주기
   handleChangeBackGroundColor = (e) => {
     if (this.state.backgroundColor !== e.target.value)
       this.setState({ backgroundColor: e.target.value });
   };
 
+  //배경색 없애주기
   handleChangeBackToNone = () => {
     this.setState({ backgroundColor: 'transparent' });
   };
 
+  //무시 (test)
   home = () => {
     this.setState({ lineWidth: 100 });
     console.log(this.state.lineWidth);
   };
 
+  //일기 수정하기 누르면 수정하기 화면으로 바꿔주고 title_list(빈배열)에 있던 태그값 넘겨주기
   editDiary = () => {
     // fetch('http://localhost:3003/diary/' + this.state.diary_no, {
     //   method: 'PATCH',
@@ -137,6 +146,7 @@ class DayDetail extends Component {
     });
   };
 
+  //
   saveDiary = () => {
     this.setState({
       isEdit: true,
@@ -147,6 +157,7 @@ class DayDetail extends Component {
     this.setState({ backgroundColor: 'transparent' });
   };
 
+  //수정버튼 클릭하면 이벤트처리
   handleEditButtonClick = () => {
     fetch('http://localhost:3003/diary/' + this.state.diary_no, {
       method: 'PATCH',
@@ -164,6 +175,7 @@ class DayDetail extends Component {
       .then((response) => response.json())
       .then((json) => {
         alert('수정완료');
+        //수정후 그 달의 리스트로 가기
         this.props.history.push({
           pathname: `/monthly/${this.state.full_day.substring(4, 6)}`,
           state: {
@@ -175,6 +187,7 @@ class DayDetail extends Component {
       .catch((e) => alert('수정 실패', e));
   };
 
+  //일기그림 수정하면 setState
   _onSketchChange = (e) => {
     // this._sketch.current.fromJSON(
     //   JSON.stringify(this._sketch.current.toJSON())
@@ -184,6 +197,7 @@ class DayDetail extends Component {
     // console.log(e);
   };
 
+  // 태그 변경되면 state 바꿔주기
   handleAddInput = () => {
     const { edited_title_list } = this.state;
 
@@ -192,6 +206,7 @@ class DayDetail extends Component {
     });
   };
 
+  //스티커 클릭하면 클릭된 스티커 번호 state변경
   changeStickerNum = (e) => {
     console.log('eeee => ', e);
     this.setState({
@@ -199,11 +214,24 @@ class DayDetail extends Component {
     });
   };
 
+  //일기쓰면 state 변경
   write_area = (e) => {
     console.log('e => ', e);
     this.setState({
       text_field: e.target.value,
     });
+  };
+
+  // +버튼 누르면 일기 추가페이지로 이동
+  goAddDiary = () => {
+    this.props.history.push({
+      pathname: `/addNewDiary`,
+    });
+  };
+
+  // 취소 누르면 이전 페이지로 돌아가기
+  goCancle = () => {
+    this.props.history.goBack();
   };
 
   /**
@@ -241,6 +269,7 @@ class DayDetail extends Component {
     console.log('edited_title_list: ', this.state.edited_title_list);
     console.log('clicked_sticker: ', this.state.clicked_sticker);
     console.log('text_field: ', this.state.text_field);
+    console.log('searched: ', this.state.searched);
     // console.log('full_day: ', this.state.full_day.substring(4, 6));
     return (
       <div id="container">
@@ -248,14 +277,11 @@ class DayDetail extends Component {
           <>
             <div style={{ width: '75%', height: '5%' }} id="mid_container">
               <div id="list_container">
-                <TextField
-                  id="menu_box"
-                  label="일기찾기"
-                  color="secondary"
-                  style={{ width: '80px' }}
+                <Add style={{ fontSize: '45px' }} onClick={this.goAddDiary} />
+                <ArrowBack
+                  style={{ fontSize: '45px' }}
+                  onClick={this.goCancle}
                 />
-                <Add style={{ fontSize: '45px' }} />
-                <ArrowBack style={{ fontSize: '45px' }} />
               </div>
             </div>
             <div>
@@ -304,9 +330,14 @@ class DayDetail extends Component {
                 <div style={{ display: 'none' }}></div>
 
                 <div className="write_area for_space">
-                  <span className="for_space">
-                    {this.state.diary.text_field}
-                  </span>
+                  {this.state.diary.text_field.split('\n').map((line) => {
+                    return (
+                      <span className="for_space">
+                        {line}
+                        <br />
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
               <div id="edit_btn">
@@ -319,12 +350,6 @@ class DayDetail extends Component {
           <>
             <div style={{ width: '75%', height: '5%' }} id="mid_container">
               <div id="list_container">
-                <TextField
-                  id="menu_box"
-                  label="일기찾기"
-                  color="secondary"
-                  style={{ width: '80px' }}
-                />
                 <Add style={{ fontSize: '45px' }} />
                 <ArrowBack
                   style={{ fontSize: '45px' }}
@@ -469,4 +494,4 @@ class DayDetail extends Component {
     );
   }
 }
-export default withCookies(DayDetail);
+export default withRouter(DayDetail);

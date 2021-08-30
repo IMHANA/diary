@@ -9,7 +9,9 @@ import { SketchField, Tools } from '../../components/customSketchField';
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import DayDetail from '../DayDetail';
+import { BrowserRouter as Link } from 'react-router-dom';
 // import { SketchPicker } from 'react-color';
+import { withRouter } from 'react-router-dom';
 
 const WriteBoard = memo(({ onChange }) => {
   return (
@@ -185,13 +187,6 @@ class NewDay extends Component {
         {/* {this.state.lineColor} */}
         <div style={{ width: '75%', height: '5%' }} id="mid_container">
           <div id="list_container">
-            <TextField
-              id="menu_box"
-              label="일기찾기"
-              color="secondary"
-              style={{ width: '80px' }}
-            />
-            <Add style={{ fontSize: '45px' }} />
             <ArrowBack style={{ fontSize: '45px' }} onClick={this.goCancel} />
           </div>
         </div>
@@ -262,7 +257,7 @@ class NewDay extends Component {
             {/*버튼 누르면 브러시 두께 바뀌는거. 다듬어서 옵션으로 만들것 */}
             {/* <button onClick={this.home}>156165</button> */}
             <IconButton cols="20" rows="10" aria-label="delete" id="cancle_btn">
-              <Delete />
+              <Delete onClick={() => this.props.history.push('/monthly')} />
             </IconButton>
             <IconButton
               aria-label="save"
@@ -279,4 +274,4 @@ class NewDay extends Component {
     );
   }
 }
-export default withCookies(NewDay);
+export default withRouter(NewDay);

@@ -19,6 +19,7 @@ class DayList extends Component {
       year: '',
       d_count: '',
       diary: [],
+      searched: [],
     };
   }
 
@@ -55,9 +56,14 @@ class DayList extends Component {
     });
   };
 
+  // +버튼 누르면 일기 추가페이지로 이동
   goAddDiary = () => {
     this.props.history.push({
       pathname: `/addNewDiary`,
+      state: {
+        prev_year: this.state.year,
+        prev_month: this.state.month,
+      },
     });
   };
 
@@ -65,11 +71,31 @@ class DayList extends Component {
    * @title 취소 누르면 이전 페이지로 돌아가기
    */
   goCancle = () => {
-    this.props.history.goBack();
+    this.props.history.push({
+      pathname: `/monthly`,
+      state: {
+        prev_year: this.state.year,
+        prev_month: this.state.month,
+      },
+    });
+  };
+
+  //해시태그로 일기 찾기
+  searchTag = (e) => {
+    console.log('여기가 해시태그다 !!!!', e.target.value);
+    if (e.key === 'Enter') {
+      fetch('http://localhost:3003/diary/search_hash/' + e.target.value, {
+        method: 'GET',
+        credentials: 'include',
+      })
+        .then((response) => response.json())
+        .then((data) => this.setState({ searched: data }));
+    }
   };
 
   render() {
     console.log(this.state.diary);
+    console.log('searched: ', this.state.searched);
     return (
       <div id="container">
         <div id="sub_box">
@@ -91,6 +117,7 @@ class DayList extends Component {
                   label="일기찾기"
                   color="secondary"
                   style={{ width: '80px' }}
+                  onKeyDown={this.searchTag}
                 />
               </span>
               <span onClick={this.goAddDiary}>

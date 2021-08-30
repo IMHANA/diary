@@ -4,6 +4,7 @@ import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import AddTagButton from './addTagButton';
 import { EcoTwoTone } from '@material-ui/icons';
+import { withRouter } from 'react-router-dom';
 
 class AddTag extends Component {
   static propsTypes = {
@@ -206,5 +207,5 @@ class AddTag extends Component {
     );
   }
 }
-export default withCookies(AddTag);
+export default withRouter(AddTag);
 // export default AddTag;
