@@ -20,6 +20,7 @@ class DayList extends Component {
       d_count: '',
       diary: [],
       searched: [],
+      isSearched: true,
     };
   }
 
@@ -82,20 +83,56 @@ class DayList extends Component {
 
   //해시태그로 일기 찾기
   searchTag = (e) => {
-    console.log('여기가 해시태그다 !!!!', e.target.value);
-    if (e.key === 'Enter') {
-      fetch('http://localhost:3003/diary/search_hash/' + e.target.value, {
-        method: 'GET',
-        credentials: 'include',
-      })
-        .then((response) => response.json())
-        .then((data) => this.setState({ searched: data }));
+    // console.log('여기가 해시태그다 !!!!', String(e.target.value));
+    // console.log('드루와', this.state.year, this.state.month);
+    e.preventDefault();
+
+    let val = e.target.value;
+    let pattern = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+    if (pattern.test(val)) {
+      alert('특수문자 입력 불가');
+      e.target.value = val.replace(pattern, '');
+    } else {
+      console.log('e.target.value : ', e.target.value);
+
+      if (e.key === 'Enter') {
+        // console.log('enter 들어왔니?');
+
+        console.log(
+          this.state.year + this.state.month + '/' + String(e.target.value)
+        );
+        console.log('value: ', e.target.value);
+        fetch(
+          'http://localhost:3003/diary/search_hash/' +
+            this.state.year +
+            this.state.month +
+            '/' +
+            String(e.target.value),
+          {
+            method: 'GET',
+            credentials: 'include',
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            this.setState({ searched: data });
+            if (data) {
+              this.setState({
+                isSearched: false,
+              });
+            }
+          });
+      }
+      console.log(this.state.searched);
     }
   };
 
   render() {
     console.log(this.state.diary);
     console.log('searched: ', this.state.searched);
+    if (this.state.searched == '' && this.state.searched == 'null') {
+      this.setState({ isSearched: false });
+    }
     return (
       <div id="container">
         <div id="sub_box">
@@ -132,31 +169,63 @@ class DayList extends Component {
             </div>
           </div>
           {/* <div id="month_list"> */}
-          <div className="list_box">
-            {this.state.diary.map((arr, idx) => {
-              return (
-                <div
-                  className={`${arr.diary_date} date_box`}
-                  onClick={(e) =>
-                    this.goDayDetail(arr.diary_date, arr.diary_no)
-                  }
-                >
-                  <span className="date">
-                    <Minimize /> {String(arr.diary_date).substring(5, 10)}
-                  </span>
-                  <img
-                    className="list_sticker"
-                    src={`/image/${arr.sticker}.png`}
-                    alt="말랭이"
-                  />
-                  {arr.title_list.map((title_arr, idx) => {
-                    return <span className="list_box_span"> #{title_arr}</span>;
-                  })}
-                  {/* <span className="list_box_span">{arr.title_list}</span> */}
-                </div>
-              );
-            })}
-          </div>
+          {this.state.isSearched ? (
+            <div className="list_box">
+              {this.state.diary.map((arr, idx) => {
+                return (
+                  <div
+                    className={`${arr.diary_date} date_box`}
+                    onClick={(e) =>
+                      this.goDayDetail(arr.diary_date, arr.diary_no)
+                    }
+                  >
+                    <span className="date">
+                      <Minimize /> {String(arr.diary_date).substring(5, 10)}
+                    </span>
+                    <img
+                      className="list_sticker"
+                      src={`/image/${arr.sticker}.png`}
+                      alt="말랭이"
+                    />
+                    {arr.title_list.map((title_arr, idx) => {
+                      return (
+                        <span className="list_box_span"> #{title_arr}</span>
+                      );
+                    })}
+                    {/* <span className="list_box_span">{arr.title_list}</span> */}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="list_box">
+              {this.state.searched.map((arr, idx) => {
+                return (
+                  <div
+                    className={`${arr.diary_date} date_box`}
+                    onClick={(e) =>
+                      this.goDayDetail(arr.diary_date, arr.diary_no)
+                    }
+                  >
+                    <span className="date">
+                      <Minimize /> {String(arr.diary_date).substring(5, 10)}
+                    </span>
+                    <img
+                      className="list_sticker"
+                      src={`/image/${arr.sticker}.png`}
+                      alt="말랭이"
+                    />
+                    {arr.title_list.map((title_arr, idx) => {
+                      return (
+                        <span className="list_box_span"> #{title_arr}</span>
+                      );
+                    })}
+                    {/* <span className="list_box_span">{arr.title_list}</span> */}
+                  </div>
+                );
+              })}
+            </div>
+          )}
           {/* </div> */}
           <div></div>
         </div>

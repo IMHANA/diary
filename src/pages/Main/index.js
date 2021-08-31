@@ -151,6 +151,9 @@ class Main extends Component {
     })
       .then((response) => response.json())
       .then((json) => {
+        const { cookies } = this.props;
+        console.log('json: ', json);
+        cookies.set('user_no', json.user_no);
         // if (!json) {
         //   throw new Error('db에 값이 없는걸??');
         // } else {
