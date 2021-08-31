@@ -52,11 +52,11 @@ class AddNewDiary extends Component {
         sticker: clicked_sticker,
       }),
     })
-      .then((response) => response.json())
       .then((json) => {
-        if (json.statusCode === 200 || json.statusCode === 201) {
+        console.log('!!!!!!!!!!!!!!', json);
+        if (json.status === 200 || json.status === 201) {
           alert('저장완료');
-          // this.props.history.push('/monthly');
+          this.props.history.push('/monthly');
           //   } else {
           //     alert('저장실패');
         }
