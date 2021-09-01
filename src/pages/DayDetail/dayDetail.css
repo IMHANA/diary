@@ -13,3 +13,38 @@
   display: flex;
   justify-content: center;
 }
+
+#title_sticker2 {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+#writing_title2 {
+  margin: 0;
+  padding: 0;
+}
+
+.editInputBox {
+  display: inline-block;
+  padding-right: 5px;
+  max-width: 800px;
+}
+
+.editInput {
+  width: 130px;
+}
+
+.addlist_sticker2 {
+  cursor: pointer;
+  padding: 0 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.addlist_sticker2:hover {
+  /* transform: scale(1.3); */
+  /* transform: rotate(1turn) scale(1.7); */
+  transform: scale(1.7);
+  transition-duration: 350ms;
+}

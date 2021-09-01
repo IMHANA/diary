@@ -99,8 +99,8 @@ class Main extends Component {
       })
         .then(function (response) {
           if (response.ok) {
-            // this.set({ isLoginView: true });
             alert('가입완료, 로그인을 해주세요.');
+            // this.set({ isLoginView: false });
             // this.setLogView();
           } else {
             throw new Error('Someting went wrong.');
@@ -197,7 +197,7 @@ class Main extends Component {
                 <TextField
                   id="loginput_box"
                   // label="PW"
-                  type="text"
+                  type="password"
                   placeholder="pwd"
                   name="pwd"
                   value={this.state.pwd}

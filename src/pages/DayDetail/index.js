@@ -342,7 +342,7 @@ class DayDetail extends Component {
             </div>
           </>
         ) : (
-          // ============================================================================
+          // =============================일기수정===============================================
           <>
             <div style={{ width: '75%', height: '5%' }} id="mid_container">
               <div id="list_container">
@@ -357,71 +357,78 @@ class DayDetail extends Component {
               <div id="writing_date">
                 <h2>{this.state.full_day}</h2>
               </div>
-              <div id="writing_title">
+              <div id="writing_title2">
                 <h3 id="little_title">
                   {this.state.edited_title_list
                     ? this.state.edited_title_list.map((title_arr, idx) => {
                         return (
-                          <input
-                            key={idx}
-                            value={title_arr}
-                            onChange={(e) => this.editTitleList(e, idx)}
-                          ></input>
+                          <div className="editInputBox">
+                            <input
+                              className="editInput"
+                              key={idx}
+                              value={title_arr}
+                              onChange={(e) => this.editTitleList(e, idx)}
+                            />
+                            {/* {title_arr} */}
+                            {/* </input> */}
+                          </div>
                         );
                       })
                     : null}
                   {/* <AddTagButton /> */}
+                </h3>
+                <div>
                   <button onClick={() => this.handleAddInput('hana')}>
                     태그추가
                   </button>
-                </h3>
+                </div>
               </div>
               <div id="title_sticker">
-                <div>
+                <div id="title_sticker2">
                   <img
-                    className="addlist_sticker"
+                    className="addlist_sticker2"
                     src="/image/angry.png"
                     alt="분노의말랭이"
                     name="1"
                     onClick={this.changeStickerNum}
                   />
                   <img
-                    className="addlist_sticker"
+                    className="addlist_sticker2"
                     src="/image/good.png"
                     alt="좋음의말랭이"
                     name="2"
                     onClick={this.changeStickerNum}
                   />
                   <img
-                    className="addlist_sticker"
+                    className="addlist_sticker2"
                     src="/image/sad.png"
                     alt="슬픔의말랭이"
                     name="3"
                     onClick={this.changeStickerNum}
                   />
                   <img
-                    className="addlist_sticker"
+                    className="addlist_sticker2"
                     src="/image/happy.png"
                     alt="행복의말랭이"
                     name="4"
                     onClick={this.changeStickerNum}
                   />
                   <img
-                    className="addlist_sticker"
+                    className="addlist_sticker2"
                     src="/image/soso.png"
                     alt="그저그런말랭이"
                     name="5"
                     onClick={this.changeStickerNum}
                   />
                   <img
-                    className="addlist_sticker"
+                    className="addlist_sticker2"
                     src="/image/tired.png"
                     alt="지친말랭이"
                     name="6"
                     onClick={this.changeStickerNum}
                   />
                   <img
-                    className="addlist_sticker"
+                    className="addlist_sticker2"
                     src="/image/what.png"
                     alt="에엥의말랭이"
                     name="7"
