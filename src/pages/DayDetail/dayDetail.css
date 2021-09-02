@@ -48,3 +48,8 @@
   transform: scale(1.7);
   transition-duration: 350ms;
 }
+
+#plus_tag_box {
+  display: flex;
+  justify-content: center;
+}

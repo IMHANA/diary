@@ -12,6 +12,7 @@ import './dayDetail.css';
 import { fabric } from 'fabric';
 import AddTagButton from '../AddTag/addTagButton';
 import { withRouter } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const WriteBoard = memo(({ onChange, value }) => {
   return (
@@ -35,7 +36,7 @@ class DayDetail extends Component {
     this.state = {
       backgroundColor: '#fff',
       lineColor: 'black',
-      lineWidth: '3',
+      lineWidth: 3,
       full_day: this.props.location.state.full_day,
       diary: {},
       diary_no: this.props.location.state.diary_no,
@@ -377,10 +378,14 @@ class DayDetail extends Component {
                     : null}
                   {/* <AddTagButton /> */}
                 </h3>
-                <div>
-                  <button onClick={() => this.handleAddInput('hana')}>
+                <div id="plus_tag_box">
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    onClick={() => this.handleAddInput('hana')}
+                  >
                     태그추가
-                  </button>
+                  </Button>
                 </div>
               </div>
               <div id="title_sticker">
