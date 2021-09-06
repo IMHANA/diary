@@ -24,26 +24,15 @@ class Main extends Component {
       user_info: [],
     };
 
-    this.changeBtnNum = this.changeBtnNum.bind(this);
-    this.signUp = this.signUp.bind(this);
+    // this.changeBtnNum = this.changeBtnNum.bind(this);
+    // this.signUp = this.signUp.bind(this);
   }
-
-  // setCookie = function (name, value, day) {
-  //   let date = new Date();
-  //   date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000); // 1초 = 1/1000
-  //   document.cookie =
-  //     name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
-  // };
-
   // 로그인 시 인풋창값 state에 넣어주기
   handleIdChange = (e) => {
     // const { cookies } = this.props;
     this.setState({
       user_id: e.target.value,
     });
-    // cookies.set('user_id', this.state.user_id);
-    // console.log(cookies.get('user_id'));
-    // console.log(e.target.value);
   };
   handlePwdChange = (e) => {
     // handleIdChange()에서 id값 쿠키에 안넣어져서 여기에 넣기
@@ -70,12 +59,12 @@ class Main extends Component {
   };
 
   // 로그인 화면에서 가입버튼 누르면 가입버튼만 보이게
-  changeBtnNum() {
+  changeBtnNum = () => {
     this.setState({ isLoginView: false });
-  }
+  };
 
   // 가입버튼 누르면 id 중복체크 하고 insert
-  signUp(e) {
+  signUp = (e) => {
     if (
       this.state.new_id !== '' ||
       this.state.new_id !== 'null' ||
@@ -120,7 +109,7 @@ class Main extends Component {
       new_id: '',
       new_pwd: '',
     });
-  }
+  };
   // setLogView() {
   //   this.set({ isLoginView: true });
   // }

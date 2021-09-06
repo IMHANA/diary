@@ -45,6 +45,7 @@ class DayDetail extends Component {
       addTagList: [], //인풋창 생성
       clicked_sticker: 8,
       text_field: '',
+      isBtnEvent: true,
     };
     this._sketch = React.createRef();
   }
@@ -266,12 +267,6 @@ class DayDetail extends Component {
     })();
     // let test = JSON.parse(this.state.diary.painting);
 
-    console.log('this.state.diary.title_list : ', this.state.diary.title_list);
-    console.log('edited_title_list: ', this.state.edited_title_list);
-    console.log('clicked_sticker: ', this.state.clicked_sticker);
-    console.log('text_field: ', this.state.text_field);
-    console.log('searched: ', this.state.searched);
-    // console.log('full_day: ', this.state.full_day.substring(4, 6));
     return (
       <div id="container">
         {this.state.isEdit ? (
@@ -358,27 +353,32 @@ class DayDetail extends Component {
               <div id="writing_date">
                 <h2>{this.state.full_day}</h2>
               </div>
-              <div id="writing_title2">
-                <h3 id="little_title">
-                  {this.state.edited_title_list
-                    ? this.state.edited_title_list.map((title_arr, idx) => {
-                        return (
-                          <div className="editInputBox">
-                            <input
-                              className="editInput"
-                              key={idx}
-                              value={title_arr}
-                              onChange={(e) => this.editTitleList(e, idx)}
-                            />
-                            {/* {title_arr} */}
-                            {/* </input> */}
-                          </div>
-                        );
-                      })
-                    : null}
-                  {/* <AddTagButton /> */}
-                </h3>
-                <div id="plus_tag_box">
+              <div id="edit_tag_title_box">
+                <div id="writing_title2">
+                  <h3 id="little_title">
+                    {this.state.edited_title_list
+                      ? this.state.edited_title_list.map((title_arr, idx) => {
+                          return (
+                            <div className="editInputBox">
+                              <button
+                                className="editInput"
+                                key={idx}
+                                value={title_arr}
+                                onChange={(e) => this.editTitleList(e, idx)}
+                              >
+                                {title_arr}
+                              </button>
+                              {/* {title_arr} */}
+                              {/* </input> */}
+                            </div>
+                          );
+                        })
+                      : null}
+                    {/* <AddTagButton /> */}
+                  </h3>
+                  <div id="plus_tag_box"></div>
+                </div>
+                <div id="tag_btn_box">
                   <Button
                     variant="outlined"
                     color="secondary"
@@ -388,6 +388,7 @@ class DayDetail extends Component {
                   </Button>
                 </div>
               </div>
+
               <div id="title_sticker">
                 <div id="title_sticker2">
                   <img

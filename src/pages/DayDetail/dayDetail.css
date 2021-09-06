@@ -20,26 +20,48 @@
   padding-bottom: 10px;
 }
 
+#edit_tag_title_box {
+  display: flex;
+  margin-bottom: 15px;
+}
+
 #writing_title2 {
+  display: inline-block;
   margin: 0;
-  padding: 0;
+  padding: 5px;
+  border: 1px solid red;
+  width: 900px;
+  max-height: 50px;
+  overflow: scroll;
+}
+
+#tag_btn_box {
+  padding-left: 50px;
+  padding-bottom: 15px;
+  display: flex;
+  align-items: flex-end;
 }
 
 .editInputBox {
   display: inline-block;
-  padding-right: 5px;
+  padding-left: 5px;
   max-width: 800px;
+  padding-bottom: 5px;
 }
 
-.editInput {
-  width: 130px;
-}
+/* .editInput {
+  width: 80px;
+  height: 30px;
+  border-radius: 30px;
+  border: 2px solid skyblue;
+} */
 
 .addlist_sticker2 {
   cursor: pointer;
   padding: 0 10px;
   width: 40px;
   height: 40px;
+  margin-bottom: 5px;
 }
 
 .addlist_sticker2:hover {

@@ -52,17 +52,17 @@ class NewDay extends Component {
   }
 
   // 저장 누르면 부모에게 값 전달
-  handleSaveButtonClick = () => {
-    console.log(this.props);
-    this.props.onsubmit(
-      this.state.backgroundColor,
-      this.state.lineColor,
-      this.state.lineWidth,
-      this.state.drawing,
-      this.state.text_field,
-      this.state.isAddTag
-    );
-  };
+  // handleSaveButtonClick = () => {
+  //   console.log(this.props);
+  //   this.props.onsubmit(
+  //     this.state.backgroundColor,
+  //     this.state.lineColor,
+  //     this.state.lineWidth,
+  //     this.state.drawing,
+  //     this.state.text_field,
+  //     this.state.isAddTag
+  //   );
+  // };
 
   handleChangePenColor = (e) => {
     // const penColor = e.target.value;
@@ -103,8 +103,8 @@ class NewDay extends Component {
     console.log('this.props => ', this._sketch.current.toJSON());
     this.props.setDrawingState1(
       // this._sketch.current.toDataURL(),
-      JSON.stringify(this._sketch.current.toJSON()),
-      this.state.text_field
+      JSON.stringify(this._sketch.current.toJSON())
+      // this.state.text_field
     );
 
     // console.log(this._sketch.current.addImg());
